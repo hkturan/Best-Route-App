@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  height: 100vh;
+  margin: 0 !important;
+  font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+}
+
+:root {
+  --leftDivWidth: 400px;
+}
+
+.cssDisplayFlex {
+  display: flex;
+}
+
+.cssWidth100Percent {
+  width: 100%;
+}
+
+.cssHeight35Px {
+  height: 35px;
+}
+
+.cssFontSize12Px {
+  font-size: 12px;
+}
+
+.cssFontSize13Px {
+  font-size: 13px;
+}
+
+.cssFontSize14Px {
+  font-size: 14px;
+}
+
+.cssFontSize15Px {
+  font-size: 15px;
+}
+
+.cssFontWeight700 {
+  font-weight: 700;
+}
+
+.cssFontWeight600 {
+  font-weight: 600;
+}
+
+.cssFontWeight500 {
+  font-weight: 500;
+}
+
+.cssFontWeight400 {
+  font-weight: 400;
+}
+
+.cssTextAlignCenter {
+  text-align: center;
+}
+
+.cssDisplayGrid {
+  display: grid;
+}

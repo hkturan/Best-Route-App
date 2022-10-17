@@ -1,0 +1,22 @@
+<div class="cssMain">
+  <div (click)="onClickRoute(route!)" [class]="'p-pt-1 cssDisplayFlex cssRoute' + (route!.selected ? ' cssSelected' : '')">
+    <div class="cssRouteInfo">
+      <div class="p-inline-message p-component p-inline-message-info">
+        <span class="p-inline-message-icon pi pi-map-marker"></span>
+        <span class="cssRouteText p-inline-message-text">{{route!.name}}</span>
+      </div>
+      <div class="cssDistanceDiv p-mt-2 p-inline-message p-component p-inline-message-info">
+        <span class="cssDistance p-inline-message-text">{{route!.distanceKm.toFixed(2) + ' KM'}}</span>
+      </div>
+    </div>
+    <div class="cssStartMarkerDiv">
+      <label class="cssStartMarkerLabel">{{route!.startMarker.name}}</label>
+    </div>
+    <div class="p-col">
+      <img src="assets/images/destination.png">
+    </div>
+    <div class="cssEndMarkerDiv">
+      <label>{{route!.endMarker.name}}</label>
+    </div>
+  </div>
+</div>
