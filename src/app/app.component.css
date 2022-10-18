@@ -27,10 +27,6 @@ input:focus {
   outline: none !important;
 }
 
-.widthWebkitFill {
-  width: -webkit-fill-available;
-}
-
 .p-datatable .p-datatable-header {
   padding: 0.5rem 1rem;
   font-size: 15px;
@@ -75,15 +71,6 @@ input:focus {
 
 .cssFloatRight {
   float: right;
-}
-
-.cssTableButton {
-  height: 32px !important;
-  width: 32px !important;
-}
-
-.cssTableButton .pi {
-  font-size: 14px;
 }
 
 .cssStartMarkerDeleteButton {
@@ -236,15 +223,6 @@ input:focus {
 
 :host ::ng-deep .p-message-close-icon {
   color: #2c1e30;
-}
-
-.reorderInfo {
-  font-size: 13px;
-  color: #0f72cd;
-}
-
-.reorderInfo .pi {
-  font-size: 10px;
 }
 
 .p-datatable .p-datatable-tbody > tr.p-highlight {

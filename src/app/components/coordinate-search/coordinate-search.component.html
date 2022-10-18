@@ -1,9 +1,9 @@
-<div class="cssDisplayFlex cssMain">
+<div class="display-flex main">
   <!-- Longitude -->
   <div class="p-col-5 p-pl-0">
     <span class="p-float-label">
       <input [(ngModel)]="inputLng" id="float-input-lat" type="text" pinputtext=""
-             class="cssHeight35Px widthWebkitFill p-inputtext p-component p-element ng-valid ng-touched ng-dirty p-filled">
+             class="height-35 width-webkit-fill p-inputtext p-component p-element ng-valid ng-touched ng-dirty p-filled">
       <label for="float-input-lat">Longitude</label>
     </span>
   </div>
@@ -13,7 +13,7 @@
   <div class="p-col-5 p-pr-0">
     <span class="p-float-label">
       <input [(ngModel)]="inputLat" id="float-input-lng" type="text" pinputtext=""
-             class="cssHeight35Px widthWebkitFill p-inputtext p-component p-element ng-valid ng-touched ng-dirty p-filled">
+             class="height-35 width-webkit-fill p-inputtext p-component p-element ng-valid ng-touched ng-dirty p-filled">
       <label for="float-input-lng">Latitude</label>
     </span>
   </div>
@@ -22,7 +22,7 @@
   <!-- Go Button -->
   <div class="p-col-2 p-pr-0">
     <p-button (click)="mapUtil.goAnywhereOnMap(map, inputLng, inputLat)" label="Go"
-              styleClass="widthWebkitFill p-ml-2 p-button-sm p-button-info"></p-button>
+              styleClass="width-webkit-fill p-ml-2 p-button-sm p-button-info"></p-button>
   </div>
   <!-- Go Button -->
 </div>

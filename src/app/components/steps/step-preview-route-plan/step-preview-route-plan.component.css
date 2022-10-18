@@ -1,0 +1,20 @@
+.reorderInfo {
+  font-size: 13px;
+  color: #0f72cd;
+}
+
+.reorderInfo .pi {
+  font-size: 10px;
+}
+
+.column-width {
+  width: 3rem;
+}
+
+.col-pad {
+  padding: 0.5rem 0.5rem !important;
+}
+
+.img-div {
+  width: 20px;
+}

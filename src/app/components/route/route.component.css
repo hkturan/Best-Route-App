@@ -1,4 +1,4 @@
-.cssStartMarkerLabel {
+.start-marker-label {
   float: right;
   margin-top: 46px;
   color: #565a5e;
@@ -6,7 +6,7 @@
   font-size: 13px;
 }
 
-.cssEndMarkerDiv {
+.end-marker-div {
   width: 80px;
   height: 84px;
   padding-top: 12px;
@@ -15,48 +15,48 @@
   font-size: 13px;
 }
 
-.cssStartMarkerDiv {
+.start-marker-div {
   width: 80px;
   height: 84px;
 }
 
-.cssDistance {
+.distance {
   font-weight: 500;
   font-size: 12px;
 }
 
-.cssDistanceDiv {
+.distance-div {
   background-color: #d9d9d9;
   color: #2e2e2e;
   height: 26px;
 }
 
-.cssRouteText {
+.route-text {
   font-weight: 500;
   font-size: 13px;
 }
 
-.cssRouteInfo {
+.route-info {
   width: 120px !important;
   text-align: center;
   margin-top: 7px;
 }
 
-.cssRoute {
+.route {
   border: 1px solid #dbdbdb;
   border-radius: 10px;
   background-color: #f8f8f8;
 }
 
-.cssRoute:hover {
+.route:hover {
   background-color: #eeeeee;
   cursor: pointer;
 }
 
-.cssMain {
+.main {
   padding: 20px 20px 0 20px;;
 }
 
-.cssSelected {
+.selected {
   background-color: #e3ffdc;
 }

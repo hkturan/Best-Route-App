@@ -1,0 +1,36 @@
+<!-- Marker List -->
+<div class="p-col p-pr-0 p-pl-0">
+  <p-table [scrollable]="true" scrollHeight="200px" (onRowSelect)="onRowSelectMarker()" [value]="listMarkerEntity"
+           selectionMode="single" [(selection)]="selectedMarkerEntity" dataKey="id" styleClass="p-datatable-gridlines"
+           responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        Marker List
+        <div>
+          <button (click)="deleteSelectedMarker()" [disabled]="listMarkerEntity.length === 0 || !selectedMarkerEntity"
+                  pButton icon="pi pi-minus-circle" class="cssTableButton p-button-danger" pTooltip="Delete"
+                  tooltipPosition="top"></button>
+          <button (click)="deleteAllMarkers()" [disabled]="listMarkerEntity.length === 0" pButton icon="pi pi-trash"
+                  class="cssTableButton p-button-danger p-button-outlined p-ml-2" pTooltip="Delete All"
+                  tooltipPosition="top"></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-markerEntity>
+      <tr [pSelectableRow]="markerEntity">
+        <td>{{markerEntity.marker.getLngLat().lat}}</td>
+        <td>{{markerEntity.marker.getLngLat().lng}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      Total Markers : {{listMarkerEntity.length}}
+    </ng-template>
+  </p-table>
+</div>
+<!-- Marker List -->

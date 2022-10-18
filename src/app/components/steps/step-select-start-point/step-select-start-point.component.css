@@ -1,0 +1,36 @@
+.start-marker {
+  border-radius: 5px;
+  border: 1px solid #b6b6b6;
+  background-color: #e9ecef;
+}
+
+.start-marker-lng {
+  width: 90px;
+  color: #494c4e;
+}
+
+.start-marker-lat {
+  width: 90px;
+  color: #494c4e;
+}
+
+.start-marker-delete-button {
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.start-marker-delete-button .pi {
+  font-size: 13px;
+}
+
+.start-marker-img {
+  width: 80px;
+}
+
+.start-point-div {
+  color: #d34242;
+}
+
+.button-div {
+  width: 40px;
+}

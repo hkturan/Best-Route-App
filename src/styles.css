@@ -8,16 +8,12 @@ body {
   --leftDivWidth: 400px;
 }
 
-.cssDisplayFlex {
+.display-flex {
   display: flex;
 }
 
-.cssWidth100Percent {
+.wdith-100-percent {
   width: 100%;
-}
-
-.cssHeight35Px {
-  height: 35px;
 }
 
 .cssFontSize12Px {
@@ -52,10 +48,22 @@ body {
   font-weight: 400;
 }
 
-.cssTextAlignCenter {
-  text-align: center;
+.text-align-center {
+  text-align: center !important;
 }
 
 .cssDisplayGrid {
   display: grid;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.br-0 {
+  border-right: 0;
+}
+
+.bl-0 {
+  border-left: 0;
 }

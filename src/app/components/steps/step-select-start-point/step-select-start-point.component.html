@@ -1,21 +1,21 @@
-<div *ngIf="startMarkerEntity" class="p-col p-p-0 p-mt-3" style="border-radius: 5px; border: 1px solid #b6b6b6; background-color: #e9ecef">
-  <div class="cssDisplayFlex">
-    <div class="p-p-4" style="width: 80px;">
-      <img (click)="goStartPoint()" pTooltip="Go" tooltipPosition="top" style="cursor: pointer;" src="{{'assets/images/' + startMarkerEntity.enumMarker.imgName}}">
+<div *ngIf="startMarkerEntity" class="p-col p-p-0 p-mt-3 start-marker">
+  <div class="display-flex">
+    <div class="start-marker-img p-p-4">
+      <img class="cursor-pointer" (click)="goStartPoint()" pTooltip="Go" tooltipPosition="top" src="{{'assets/images/' + startMarkerEntity.enumMarker.imgName}}">
     </div>
     <div class="p-col p-p-1">
-      <div class="cssTextAlignCenter p-pt-1 cssFontWeight600 cssFontSize14Px" style="color: #d34242;">Start Point</div>
-      <div class="cssDisplayFlex p-mt-1">
-        <div class="cssFontSize14Px cssFontWeight600" style="width: 90px; color: #494c4e;">Longitude : </div>
+      <div class="text-align-center p-pt-1 cssFontWeight600 cssFontSize14Px start-point-div">Start Point</div>
+      <div class="display-flex p-mt-1">
+        <div class="cssFontSize14Px cssFontWeight600 start-marker-lng">Longitude : </div>
         <div class="cssFontSize13Px">{{startMarkerEntity.marker.getLngLat().lng}}</div>
       </div>
-      <div class="cssDisplayFlex">
-        <div class="cssFontSize14Px cssFontWeight600" style="width: 90px; color: #494c4e;">Latitude : </div>
+      <div class="display-flex">
+        <div class="cssFontSize14Px cssFontWeight600 start-marker-lat">Latitude : </div>
         <div class="cssFontSize13Px">{{startMarkerEntity.marker.getLngLat().lat}}</div>
       </div>
     </div>
-    <div style="width: 40px;">
-      <button (click)="deleteStartPoint()" pTooltip="Delete" tooltipPosition="top" pButton pRipple type="button" icon="pi pi-times" class="cssStartMarkerDeleteButton cssFloatRight p-button-rounded p-button-danger p-button-text"></button>
+    <div class="button-div">
+      <button (click)="deleteStartPoint()" pTooltip="Delete" tooltipPosition="top" pButton pRipple type="button" icon="pi pi-times" class="start-marker-delete-button cssFloatRight p-button-rounded p-button-danger p-button-text"></button>
     </div>
   </div>
 </div>

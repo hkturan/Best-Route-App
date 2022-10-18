@@ -26,6 +26,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GlobalErrorHandler} from 'global-error-handler';
 import { RoutePlanComponent } from './components/route-plan/route-plan.component';
 import {MapService} from './services/map.service';
+import { StepMarkerSelectionComponent } from './components/steps/step-marker-selection/step-marker-selection.component';
+import { StepPreviewRoutePlanComponent } from './components/steps/step-preview-route-plan/step-preview-route-plan.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MapService} from './services/map.service';
     CoordinateSearchComponent,
     StepsComponent,
     StepSelectStartPointComponent,
-    RoutePlanComponent
+    RoutePlanComponent,
+    StepMarkerSelectionComponent,
+    StepPreviewRoutePlanComponent
   ],
   imports: [
     BrowserModule,

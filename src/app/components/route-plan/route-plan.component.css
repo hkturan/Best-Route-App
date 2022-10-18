@@ -1,0 +1,16 @@
+.distance {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.distance-div {
+  background-color: #d9d9d9;
+  color: #2e2e2e;
+  height: 26px;
+}
+
+.switch-directions-label {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}

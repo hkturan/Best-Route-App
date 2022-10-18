@@ -1,5 +1,13 @@
-.cssMain {
+.main {
   padding: 30px 20px 10px 20px;
   background-color: #efefef6b;
   border-bottom: 1px solid #d1d1d1;
+}
+
+.width-webkit-fill {
+  width: -webkit-fill-available;
+}
+
+.height-35 {
+  height: 35px;
 }

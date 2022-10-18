@@ -36,9 +36,6 @@ export class StepsComponent implements OnInit {
   // Markers withoute Start Marker
   listMarkerEntity: MarkerEntity[] = [];
 
-  // Selected Marker on Table
-  selectedMarkerEntity: MarkerEntity | undefined;
-
   // Route
   routePlan: RoutePlan = new RoutePlan();
   routePlanTemp: RoutePlan = new RoutePlan();
@@ -46,9 +43,6 @@ export class StepsComponent implements OnInit {
   // Step Infos
   steps: Step[] = [];
   stepIndex = 0;
-
-  // Visibility of Route's Direction Markers
-  visibilityDirections = false;
 
   orderedMarkerList: MarkerEntity[] = [];
 
@@ -80,16 +74,6 @@ export class StepsComponent implements OnInit {
         this.listMarkerEntity.push(markerEntity);
       }
     });
-  }
-
-  /**
-   * onRowSelect event of marker table
-   */
-  onRowSelectMarker(): void {
-    if (!this.selectedMarkerEntity) {
-      return;
-    }
-    MapUtil.goAnywhereOnMapWithMarker(this.map, this.selectedMarkerEntity);
   }
 
   /**
@@ -220,43 +204,6 @@ export class StepsComponent implements OnInit {
         maximumAge: 60000,
       }
     );
-  }
-
-  /**
-   * Deletes all markers but the start marker
-   */
-  deleteAllMarkers(): void {
-    this.listMarkerEntity.forEach(e => this.deleteMarker(e, false));
-    this.listMarkerEntity = [];
-  }
-
-  /**
-   * Deletes the selected marker from the table
-   */
-  deleteSelectedMarker(): void {
-    if (!this.selectedMarkerEntity) {
-      return;
-    }
-    this.deleteMarker(this.selectedMarkerEntity, true);
-  }
-
-  /**
-   * Deletes all markers but the start marker
-   * @param markerEntity : marker to be deleted
-   */
-  deleteMarker(markerEntity: MarkerEntity, deleteList: boolean): void {
-    if (!markerEntity) {
-      return;
-    }
-    MapUtil.removeMarker(markerEntity.id);
-    if (!deleteList) {
-      return;
-    }
-    const marker = this.listMarkerEntity.find(e => e.id === markerEntity.id);
-    if (!marker) {
-      return;
-    }
-    this.listMarkerEntity.splice(this.listMarkerEntity.indexOf(marker), 1);
   }
 
   /**
