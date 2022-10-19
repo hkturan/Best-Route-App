@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MarkerEntity} from '../../entities/marker.entity';
 import {RoutePlan} from '../../entities/route-plan';
 import {MapUtil} from '../../utils/map-util';
 

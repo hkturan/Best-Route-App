@@ -1,41 +1,35 @@
 <div class="main" *ngIf="routePlan.listRoute.length === 0; else elseBlock">
   <!-- Steps -->
   <div class="p-mt-4">
-    <p-steps [model]="steps" [(activeIndex)]="stepIndex"></p-steps>
+    <p-steps [model]="steps" [(activeIndex)]="currentStep.index"></p-steps>
   </div>
   <!-- Steps -->
 
   <!-- Selected Step Header -->
   <div class="p-mt-3 text-align-center cssDisplayGrid">
-    <p-message *ngIf="disableButtonNextStep(); else elseBlockMessage" severity="info" [text]="getStepHeader()"></p-message>
+    <p-message *ngIf="disableButtonNextStep(); else elseBlockMessage" severity="info" [text]="currentStep.header"></p-message>
     <ng-template #elseBlockMessage>
-      <p-message severity="success" [text]="getStepSuccessMessage()"></p-message>
+      <p-message severity="success" [text]="currentStep.successMessage"></p-message>
     </ng-template>
-    <p-message styleClass="p-mt-2" *ngIf="getStepInfoMessage() !== ''" severity="info" [text]="getStepInfoMessage()"></p-message>
+    <p-message styleClass="p-mt-2" *ngIf="currentStep.infoMessage !== ''" severity="info" [text]="currentStep.infoMessage"></p-message>
   </div>
   <!-- Selected Step Header -->
 
-  <!-- Get Live Location Automatically -->
-  <div *ngIf="stepIndex === 0" class="p-mt-3 text-align-center">
-    <p-button [style]="{height: '33px'}" (click)="getLiveLocation()" label="Get Live Location" icon="pi pi-map-marker" styleClass="p-button-sm p-button-danger"></p-button>
-  </div>
-  <!-- Get Live Location Automatically -->
-
-  <ng-container [ngSwitch]="stepIndex">
+  <ng-container [ngSwitch]="currentStep.value">
     <!-- [START] Step 1 : Select Start Point -->
-    <ng-container *ngSwitchCase="0">
+    <ng-container *ngSwitchCase="enumStep.SELECT_START_POINT">
       <app-step-select-start-point [map]="map" [startMarkerEntity]="startMarkerEntity" (refreshStartMarker)="refreshStartMarker($event)"></app-step-select-start-point>
     </ng-container>
     <!-- [END] Step 1 : Select Start Point -->
 
     <!-- [START] Step 2 : Marker Selection -->
-    <ng-container *ngSwitchCase="1">
+    <ng-container *ngSwitchCase="enumStep.MARKER_SELECTION">
       <app-step-marker-selection [map]="map" [listMarkerEntity]="listMarkerEntity"></app-step-marker-selection>
     </ng-container>
     <!-- [END] Step 2 : Marker Selection -->
 
     <!-- [START] Step 3 : Preview & Reorder Route Plan -->
-    <ng-container *ngSwitchCase="2">
+    <ng-container *ngSwitchCase="enumStep.PREVIEW_ROUTE_PLAN">
       <app-step-preview-route-plan [map]="map" [orderedMarkerList]="orderedMarkerList"></app-step-preview-route-plan>
     </ng-container>
     <!-- [END] Step 3 : Preview & Reorder Route Plan -->
@@ -45,8 +39,8 @@
   </ng-container>
 
   <div class="p-col p-p-0 p-mt-4 p-grid p-nogutter p-justify-between ng-star-inserted">
-    <button pButton [disabled]="stepIndex === 0" (click)="onClickBackStep()" label="Back" icon="pi pi-angle-left" class="p-button-sm"></button>
-    <button pButton [disabled]="disableButtonNextStep()" *ngIf="stepIndex !== steps.length - 1; else elseBlockStepButton" (click)="onClickNextStep()" label="Next" icon="pi pi-angle-right" class="p-button-sm" iconPos="right"></button>
+    <button pButton [disabled]="currentStep.value === enumStep.SELECT_START_POINT" (click)="onClickBackStep()" label="Back" icon="pi pi-angle-left" class="p-button-sm"></button>
+    <button pButton [disabled]="disableButtonNextStep()" *ngIf="currentStep.value !== enumStep.PREVIEW_ROUTE_PLAN; else elseBlockStepButton" (click)="onClickNextStep()" label="Next" icon="pi pi-angle-right" class="p-button-sm" iconPos="right"></button>
     <ng-template #elseBlockStepButton>
       <button pButton (click)="onClickCompleteStep()" label="Complete" icon="pi pi-angle-right" class="p-button-sm p-button-success" iconPos="right"></button>
     </ng-template>

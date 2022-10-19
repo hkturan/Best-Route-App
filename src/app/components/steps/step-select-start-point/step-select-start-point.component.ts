@@ -1,6 +1,8 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {MarkerEntity} from '../../../entities/marker.entity';
 import {MapUtil} from '../../../utils/map-util';
+import {LngLat} from '@tomtom-international/web-sdk-maps';
+import {EnumMarker} from '../../../enums/enum-marker';
 
 @Component({
   selector: 'app-step-select-start-point',
@@ -44,6 +46,25 @@ export class StepSelectStartPointComponent implements OnInit {
     MapUtil.removeMarker(this.startMarkerEntity.id);
     this.startMarkerEntity = undefined;
     this.refreshStartMarker.emit(this.startMarkerEntity);
+  }
+
+  /**
+   * Gets your live location in real time
+   */
+  getLiveLocation(): void {
+    navigator.geolocation.watchPosition(
+      (position: any) => {
+        const lngLat = new LngLat(position.coords.longitude, position.coords.latitude);
+        this.startMarkerEntity = MapUtil.drawMarker(this.map, lngLat, EnumMarker.Default);
+      },
+      (err: GeolocationPositionError) => {
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 3000,
+        maximumAge: 60000,
+      }
+    );
   }
 
 }

@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Step} from '../../entities/step';
 import {MarkerEntity} from '../../entities/marker.entity';
 import {MapUtil} from '../../utils/map-util';
 import {Route} from '../../entities/route';
@@ -9,12 +8,12 @@ import {EnumMarker} from '../../enums/enum-marker';
 import {RoutePlan} from '../../entities/route-plan';
 import {CounterService} from '../../services/counter.service';
 import {HttpClient} from '@angular/common/http';
-import {MessageService} from 'primeng/api';
-import {MapService} from '../../services/map.service';
 import {HelperUtil} from '../../utils/helper-util';
 import {Constants} from '../../helper/constants';
 import {MessageUtil} from '../../utils/message-util';
 import {EnumMessageSeverity} from '../../enums/enum-message-severity';
+import {StepUtil} from '../../utils/step-util';
+import {EnumStep} from '../../enums/enum-step';
 
 @Component({
   selector: 'app-steps',
@@ -23,9 +22,10 @@ import {EnumMessageSeverity} from '../../enums/enum-message-severity';
 })
 export class StepsComponent implements OnInit {
 
-  // Utils
+  // Utils & Enums
   helperUtil = HelperUtil;
   mapUtil = MapUtil;
+  enumStep = EnumStep;
 
   // Map
   @Input() map: any;
@@ -41,19 +41,16 @@ export class StepsComponent implements OnInit {
   routePlanTemp: RoutePlan = new RoutePlan();
 
   // Step Infos
-  steps: Step[] = [];
-  stepIndex = 0;
+  steps = StepUtil.getSteps();
+  currentStep = StepUtil.getStepWithIndex(0);
 
   orderedMarkerList: MarkerEntity[] = [];
 
   constructor(private counterService: CounterService,
-              private httpClient: HttpClient,
-              private messageService: MessageService,
-              private mapService: MapService) {
+              private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.createSteps();
     this.addMapEvents();
   }
 
@@ -63,9 +60,9 @@ export class StepsComponent implements OnInit {
   addMapEvents(): void {
     // On Click Event
     this.map.on('click', (e: any) => {
-      if (this.stepIndex === 0 && !this.startMarkerEntity) {
+      if (this.currentStep.value === EnumStep.SELECT_START_POINT && !this.startMarkerEntity) {
         this.startMarkerEntity = MapUtil.drawMarker(this.map, e.lngLat, EnumMarker.Default);
-      } else if (this.stepIndex === 1) {
+      } else if (this.currentStep.value === EnumStep.MARKER_SELECTION) {
         if (this.listMarkerEntity.length === Constants.MARKER_LIMIT) {
           MessageUtil.showMessage(EnumMessageSeverity.ERROR, 'You cannot mark more than 10 locations');
           return;
@@ -77,25 +74,14 @@ export class StepsComponent implements OnInit {
   }
 
   /**
-   * Creates steps for route plan
-   */
-  createSteps(): void {
-    this.steps = [
-      {label: 'Step 1', header: 'Select Start Point', index: 0, successMessage: 'You selected Start Point', infoMessage: ''},
-      {label: 'Step 2', header: 'Select Marker(s) for Route', index: 1, successMessage: 'You selected Marker(s)', infoMessage: ''},
-      {label: 'Step 3', header: 'Choose Route Plan', index: 2, successMessage: 'Route Plan is Ready', infoMessage: 'You can reorder'}
-    ];
-  }
-
-  /**
    * Goes to next step
    */
   async onClickNextStep(): Promise<void> {
     if (!this.startMarkerEntity) {
       return;
     }
-    this.stepIndex++;
-    if (this.stepIndex === 2) {
+    this.currentStep = StepUtil.getNextStep(this.currentStep);
+    if (this.currentStep.value === EnumStep.PREVIEW_ROUTE_PLAN) {
       const pointsForWaypointOptimizations = [];
 
       // All Markers of Map (Start Point and Others)
@@ -130,7 +116,7 @@ export class StepsComponent implements OnInit {
    * Goes to back step
    */
   onClickBackStep(): void {
-    this.stepIndex--;
+    this.currentStep = StepUtil.getBackStep(this.currentStep);
   }
 
   /**
@@ -148,62 +134,16 @@ export class StepsComponent implements OnInit {
   }
 
   /**
-   * returns the header of the current step
-   * @returns string
-   */
-  getStepHeader(): string {
-    const step = this.steps.find(e => e.index === this.stepIndex) as Step;
-    return step.header;
-  }
-
-  /**
-   * Returns the message of the current step
-   * @returns string
-   */
-  getStepSuccessMessage(): string {
-    const step = this.steps.find(e => e.index === this.stepIndex) as Step;
-    return step.successMessage;
-  }
-
-  /**
-   * Returns the info message of the current step
-   * @returns string
-   */
-  getStepInfoMessage(): string {
-    const step = this.steps.find(e => e.index === this.stepIndex) as Step;
-    return step.infoMessage;
-  }
-
-  /**
    * Checks for next step
    * @returns boolean
    */
   disableButtonNextStep(): boolean {
-    if (this.stepIndex === 0) {
+    if (this.currentStep.value === EnumStep.SELECT_START_POINT) {
       return !this.startMarkerEntity;
-    } else if (this.stepIndex === 1) {
+    } else if (this.currentStep.value === EnumStep.MARKER_SELECTION) {
       return this.listMarkerEntity.length === 0;
     }
     return false;
-  }
-
-  /**
-   * Gets your live location in real time
-   */
-  getLiveLocation(): void {
-    navigator.geolocation.watchPosition(
-      (position: any) => {
-        const lngLat = new LngLat(position.coords.longitude, position.coords.latitude);
-        this.startMarkerEntity = MapUtil.drawMarker(this.map, lngLat, EnumMarker.Default);
-      },
-      (err: GeolocationPositionError) => {
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 3000,
-        maximumAge: 60000,
-      }
-    );
   }
 
   /**
