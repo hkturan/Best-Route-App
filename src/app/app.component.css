@@ -5,51 +5,22 @@
   width: 100%;
 }
 
-.leftDiv {
+.left-div {
   width: var(--leftDivWidth);
   height: 100%;
   box-sizing: border-box;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
-.rightDiv {
+.right-div {
   width: calc(100% - var(--leftDivWidth));
   height: 100%;
 }
 
-.mainDiv {
+.main-div {
   width: 100%;
   height: 100%;
   display: flex;
-}
-
-input:focus {
-  outline: none !important;
-}
-
-.p-datatable .p-datatable-header {
-  padding: 0.5rem 1rem;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.p-datatable .p-datatable-footer {
-  padding: 0.5rem 1rem;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.p-datatable .p-datatable-thead > tr > th {
-  padding: 0.5rem 1rem;
-  font-size: 13px;
-  font-weight: 500;
-  background: #efefef;
-}
-
-.p-datatable .p-datatable-tbody > tr > td {
-  padding: 0.5rem 1rem;
-  font-size: 13px;
-  font-weight: 400;
 }
 
 .blink {
@@ -69,190 +40,25 @@ input:focus {
   }
 }
 
-.cssFloatRight {
-  float: right;
-}
-
-.cssStartMarkerDeleteButton {
-  height: 32px !important;
-  width: 32px !important;
-}
-
-.cssStartMarkerDeleteButton .pi {
-  font-size: 13px;
-}
-
-.p-steps .p-steps-item.p-highlight .p-steps-number {
-  background: #EFF6FF !important;
-  color: #1D4ED8 !important;
-}
-
-.p-steps .p-steps-item.p-highlight .p-steps-title {
-  font-weight: 600;
-  color: #212529;
-  font-size: 14px;
-}
-
-.p-steps .p-steps-item .p-menuitem-link .p-steps-title {
-  margin-top: 0.5rem;
-  color: #6c757d;
-  font-size: 14px;
-}
-
-.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
-  color: #495057;
-  border: 1px solid #e9ecef;
-  background: #ffffff;
-  min-width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  font-weight: 500;
-  font-size: 16px;
-  z-index: 1;
-  border-radius: 50%;
-}
-
-.customer-badge.status-new {
-  background-color: #b3e5fc;
-  color: #23547b;
-}
-.customer-badge {
-  border-radius: 2px;
-  padding: 0.25em 0.5rem;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: .3px;
-}
-
-.p-inline-message .p-inline-message-text {
-  font-size: 14px;
-}
-
-.cssDistance {
-  font-weight: 500;
-  font-size: 12px;
-}
-
-.cssDistanceDiv {
-  background-color: #d9d9d9;
-  color: #2e2e2e;
-  height: 26px;
-}
-
-.p-inputswitch .p-inputswitch-slider {
-  background: #ced4da;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-  border-radius: 30px;
-}
-
-.p-inputswitch .p-inputswitch-slider:before {
-  background: #ffffff;
-  width: 1.25rem;
-  height: 1.25rem;
-  left: 0.25rem;
-  margin-top: -0.625rem;
-  border-radius: 50%;
-  transition-duration: 0.2s;
-}
-
- .p-inputswitch-slider:before {
-   position: absolute;
-   content: "";
-   top: 50%;
- }
-
-.example-list {
-  width: 500px;
-  max-width: 100%;
-  border: solid 1px #ccc;
-  min-height: 60px;
-  display: block;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.example-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: move;
-  background: white;
-  font-size: 14px;
-}
-
-.cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-  0 8px 10px 1px rgba(0, 0, 0, 0.14),
-  0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.cdk-drag-placeholder {
-  opacity: 0;
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-box:last-child {
-  border: none;
-}
-
-.example-list .cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.cssTableButtonPlan .pi {
-  font-size: 13px;
-}
-
-:host ::ng-deep .p-message-custom {
-  background-color: #E1CFE7;
-  border: solid #8A427A;
-  border-width: 0 0 0 6px;
-  color: #2c1e30;
-}
-
-:host ::ng-deep .p-message-close-icon {
-  color: #2c1e30;
-}
-
-.p-datatable .p-datatable-tbody > tr.p-highlight {
-  background: #EFF6FF;
-  color: #1D4ED8;
-}
-
 .scroller {
   width: 100%;
   height: 200px;
   overflow-y: scroll;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #eee;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #007bffc7;
   border-radius: 5px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 123, 255, 0.59);
 }

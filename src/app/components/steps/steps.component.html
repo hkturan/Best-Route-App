@@ -5,15 +5,15 @@
   </div>
   <!-- Steps -->
 
-  <!-- Selected Step Header -->
-  <div class="p-mt-3 text-align-center cssDisplayGrid">
+  <!-- Current Step Header -->
+  <div class="p-mt-3 text-align-center display-grid">
     <p-message *ngIf="disableButtonNextStep(); else elseBlockMessage" severity="info" [text]="currentStep.header"></p-message>
     <ng-template #elseBlockMessage>
       <p-message severity="success" [text]="currentStep.successMessage"></p-message>
     </ng-template>
     <p-message styleClass="p-mt-2" *ngIf="currentStep.infoMessage !== ''" severity="info" [text]="currentStep.infoMessage"></p-message>
   </div>
-  <!-- Selected Step Header -->
+  <!-- Current Step Header -->
 
   <ng-container [ngSwitch]="currentStep.value">
     <!-- [START] Step 1 : Select Start Point -->

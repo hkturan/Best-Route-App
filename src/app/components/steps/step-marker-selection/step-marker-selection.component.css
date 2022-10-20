@@ -1,8 +1,8 @@
-.cssTableButton {
+.table-button {
   height: 32px !important;
   width: 32px !important;
 }
 
-.cssTableButton .pi {
+.table-button .pi {
   font-size: 14px;
 }

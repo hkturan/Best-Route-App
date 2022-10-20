@@ -3,7 +3,6 @@ import {MarkerEntity} from '../../entities/marker.entity';
 import {MapUtil} from '../../utils/map-util';
 import {Route} from '../../entities/route';
 import {EnumCounterType} from '../../enums/enum-counter-type';
-import {LngLat} from '@tomtom-international/web-sdk-maps';
 import {EnumMarker} from '../../enums/enum-marker';
 import {RoutePlan} from '../../entities/route-plan';
 import {CounterService} from '../../services/counter.service';
@@ -33,7 +32,7 @@ export class StepsComponent implements OnInit {
   // Start Marker
   startMarkerEntity: MarkerEntity | undefined;
 
-  // Markers withoute Start Marker
+  // Markers without Start Marker
   listMarkerEntity: MarkerEntity[] = [];
 
   // Route
@@ -44,6 +43,7 @@ export class StepsComponent implements OnInit {
   steps = StepUtil.getSteps();
   currentStep = StepUtil.getStepWithIndex(0);
 
+  // List After Waypoint Optimization
   orderedMarkerList: MarkerEntity[] = [];
 
   constructor(private counterService: CounterService,

@@ -16,43 +16,23 @@ body {
   width: 100%;
 }
 
-.cssFontSize12Px {
-  font-size: 12px;
-}
-
-.cssFontSize13Px {
+.font-size-13 {
   font-size: 13px;
 }
 
-.cssFontSize14Px {
+.font-size-14 {
   font-size: 14px;
 }
 
-.cssFontSize15Px {
-  font-size: 15px;
-}
-
-.cssFontWeight700 {
-  font-weight: 700;
-}
-
-.cssFontWeight600 {
+.font-weight-600 {
   font-weight: 600;
-}
-
-.cssFontWeight500 {
-  font-weight: 500;
-}
-
-.cssFontWeight400 {
-  font-weight: 400;
 }
 
 .text-align-center {
   text-align: center !important;
 }
 
-.cssDisplayGrid {
+.display-grid {
   display: grid;
 }
 
@@ -66,4 +46,8 @@ body {
 
 .bl-0 {
   border-left: 0;
+}
+
+.float-right {
+  float: right;
 }

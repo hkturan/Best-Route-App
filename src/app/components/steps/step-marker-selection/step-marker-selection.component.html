@@ -8,10 +8,10 @@
         Marker List
         <div>
           <button (click)="deleteSelectedMarker()" [disabled]="listMarkerEntity.length === 0 || !selectedMarkerEntity"
-                  pButton icon="pi pi-minus-circle" class="cssTableButton p-button-danger" pTooltip="Delete"
+                  pButton icon="pi pi-minus-circle" class="table-button p-button-danger" pTooltip="Delete"
                   tooltipPosition="top"></button>
           <button (click)="deleteAllMarkers()" [disabled]="listMarkerEntity.length === 0" pButton icon="pi pi-trash"
-                  class="cssTableButton p-button-danger p-button-outlined p-ml-2" pTooltip="Delete All"
+                  class="table-button p-button-danger p-button-outlined p-ml-2" pTooltip="Delete All"
                   tooltipPosition="top"></button>
         </div>
       </div>

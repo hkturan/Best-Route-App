@@ -11,3 +11,7 @@
 .height-35 {
   height: 35px;
 }
+
+input:focus {
+  outline: none !important;
+}
