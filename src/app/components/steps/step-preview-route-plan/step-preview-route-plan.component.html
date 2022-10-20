@@ -22,7 +22,7 @@
         </div>
       </td>
       <td class="column-width text-align-center col-pad">
-        <button (click)="mapUtil.goAnywhereOnMapWithMarker(map, orderedMarkerList[index])" [style]="{width: '24px', height: '24px'}" pButton pRipple type="button" icon="pi pi-angle-double-right" class="table-button-plan p-button-rounded p-button-text"></button>
+        <button pTooltip="Go" tooltipPosition="top" (click)="mapUtil.goAnywhereOnMapWithMarker(map, orderedMarkerList[index])" [style]="{width: '24px', height: '24px'}" pButton pRipple type="button" icon="pi pi-angle-double-right" class="table-button-plan p-button-rounded p-button-text"></button>
       </td>
     </tr>
   </ng-template>

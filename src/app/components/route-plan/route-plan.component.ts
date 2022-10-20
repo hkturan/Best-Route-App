@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RoutePlan} from '../../entities/route-plan';
 import {MapUtil} from '../../utils/map-util';
+import {CounterService} from '../../services/counter.service';
+import {EnumCounterType} from '../../enums/enum-counter-type';
 
 @Component({
   selector: 'app-route-plan',
@@ -19,7 +21,7 @@ export class RoutePlanComponent implements OnInit {
   // Visibility of Route's Direction Markers
   visibilityDirections = false;
 
-  constructor() {
+  constructor(private counterService: CounterService) {
   }
 
   ngOnInit(): void {
@@ -62,6 +64,19 @@ export class RoutePlanComponent implements OnInit {
         }
       }
     }
+  }
+
+  backPreview(): void {
+    this.counterService.setCounterValue(EnumCounterType.ROUTE, 0);
+    const list = [this.routePlanTemp.listRoute, this.routePlan.listRoute];
+    for (const routeList of list) {
+      for (const route of routeList) {
+        for (const line of route.listLine) {
+          MapUtil.removeLine(this.map, line.id);
+        }
+      }
+    }
+    this.routePlan.listRoute = [];
   }
 
 }

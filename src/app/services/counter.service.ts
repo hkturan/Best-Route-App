@@ -14,4 +14,12 @@ export class CounterService {
     return counter ? ++counter.counterValue : 0;
   }
 
+  setCounterValue(counterType: EnumCounterType, value: number): void {
+    const counter = this.counterList.find(e => e.counterType.code === counterType.code);
+    if (!counter) {
+      return;
+    }
+    counter.counterValue = value;
+  }
+
 }
