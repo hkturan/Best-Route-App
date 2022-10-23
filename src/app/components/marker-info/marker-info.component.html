@@ -1,0 +1,8 @@
+<div class="p-col info-main">
+  <ng-container *ngFor="let enumMarker of markerList; let i = index">
+    <div class="display-flex" [style]="{'margin-top': (i === 0 ? '0' : '6px')}">
+      <img class="marker-image" [src]="'assets/images/' + enumMarker.imgName" src="assets/images/">
+      <span class="marker-desc p-ml-1">{{enumMarker.text}}</span>
+    </div>
+  </ng-container>
+</div>

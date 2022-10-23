@@ -51,3 +51,7 @@ body {
 .float-right {
   float: right;
 }
+
+.p-overlaypanel .p-overlaypanel-content {
+  padding: 0 !important;
+}

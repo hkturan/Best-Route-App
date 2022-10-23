@@ -1,36 +1,61 @@
-<!-- Marker List -->
 <div class="p-col p-pr-0 p-pl-0">
-  <p-table [scrollable]="true" scrollHeight="200px" (onRowSelect)="onRowSelectMarker()" [value]="listMarkerEntity"
-           selectionMode="single" [(selection)]="selectedMarkerEntity" dataKey="id" styleClass="p-datatable-gridlines"
-           responsiveLayout="scroll">
+  <p-table [scrollable]="true" scrollHeight="205px" [value]="listMarkerEntity"
+           selectionMode="single" [(selection)]="selectedMarkerEntities" dataKey="id" styleClass="p-datatable-gridlines"
+           responsiveLayout="scroll" >
+    <!-- [START] Caption of Table -->
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
         Marker List
+        <!-- [START] Delete Button -->
         <div>
-          <button (click)="deleteSelectedMarker()" [disabled]="listMarkerEntity.length === 0 || !selectedMarkerEntity"
+          <button (click)="deleteSelectedMarkers()" [disabled]="listMarkerEntity.length === 0 || (selectedMarkerEntities && selectedMarkerEntities.length === 0)"
                   pButton icon="pi pi-minus-circle" class="table-button p-button-danger" pTooltip="Delete"
                   tooltipPosition="top"></button>
-          <button (click)="deleteAllMarkers()" [disabled]="listMarkerEntity.length === 0" pButton icon="pi pi-trash"
-                  class="table-button p-button-danger p-button-outlined p-ml-2" pTooltip="Delete All"
-                  tooltipPosition="top"></button>
         </div>
+        <!-- [END] Delete Button -->
       </div>
     </ng-template>
+    <!-- [END] Caption of Table -->
+
+    <!-- [START] Header of Table -->
     <ng-template pTemplate="header">
       <tr>
-        <th>Latitude</th>
-        <th>Longitude</th>
+        <th class="column-width br-0">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th class="bl-0">Name</th>
+        <th class="column-width bl-0"></th>
       </tr>
     </ng-template>
+    <!-- [END] Caption of Table -->
+
+    <!-- [START] Body of Table -->
     <ng-template pTemplate="body" let-markerEntity>
-      <tr [pSelectableRow]="markerEntity">
-        <td>{{markerEntity.marker.getLngLat().lat}}</td>
-        <td>{{markerEntity.marker.getLngLat().lng}}</td>
+      <tr>
+        <td class="column-width">
+          <p-tableCheckbox [value]="markerEntity"></p-tableCheckbox>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input class="p-inputtext p-component" pInputText type="text" [(ngModel)]="markerEntity.name">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{markerEntity.name}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td class="column-width text-align-center col-pad">
+          <button pTooltip="Go" tooltipPosition="top" (click)="mapUtil.goAnywhereOnMapWithMarker(map, markerEntity)" pButton pRipple type="button" icon="pi pi-angle-double-right" class="table-button-go p-button-rounded p-button-text"></button>
+        </td>
       </tr>
     </ng-template>
+    <!-- [END] Body of Table -->
+
+    <!-- [START] Summary of Table -->
     <ng-template pTemplate="summary">
       Total Markers : {{listMarkerEntity.length}}
     </ng-template>
+    <!-- [END] Summary of Table -->
   </p-table>
 </div>
-<!-- Marker List -->

@@ -1,4 +1,5 @@
 <p-table [scrollable]="true" scrollHeight="205px" [value]="orderedMarkerList" [reorderableColumns]="true" styleClass="p-datatable-gridlines p-mt-2">
+  <!-- [START] Header of Table -->
   <ng-template pTemplate="header">
     <tr>
       <th class="column-width br-0"></th>
@@ -6,6 +7,9 @@
       <th class="column-width bl-0"></th>
     </tr>
   </ng-template>
+  <!-- [END] Header of Table -->
+
+  <!-- [START] Body of Table -->
   <ng-template pTemplate="body" let-rowData let-index="rowIndex">
     <tr [pReorderableRow]="index">
       <td class="column-width">
@@ -22,13 +26,17 @@
         </div>
       </td>
       <td class="column-width text-align-center col-pad">
-        <button pTooltip="Go" tooltipPosition="top" (click)="mapUtil.goAnywhereOnMapWithMarker(map, orderedMarkerList[index])" [style]="{width: '24px', height: '24px'}" pButton pRipple type="button" icon="pi pi-angle-double-right" class="table-button-plan p-button-rounded p-button-text"></button>
+        <button pTooltip="Go" tooltipPosition="top" (click)="mapUtil.goAnywhereOnMapWithMarker(map, orderedMarkerList[index])" pButton pRipple type="button" icon="pi pi-angle-double-right" class="table-button-plan p-button-rounded p-button-text"></button>
       </td>
     </tr>
   </ng-template>
+  <!-- [END] Body of Table -->
 </p-table>
+
+<!-- [START] Reorder Info -->
 <div class="reorderInfo p-pl-1 p-pt-1">
   <span>Use</span>
   <span class="pi pi-bars p-ml-1"></span>
   <span class="p-ml-1">for reorder</span>
 </div>
+<!-- [END] Reorder Info -->

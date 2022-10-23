@@ -15,3 +15,9 @@
 input:focus {
   outline: none !important;
 }
+
+.absolute-button {
+  position: absolute;
+  top: 125px;
+  right: 15px;
+}

@@ -27,7 +27,7 @@ export class StepSelectStartPointComponent implements OnInit {
   }
 
   /**
-   * Goes to the starting point on the map
+   * Goes to the start point on the map
    */
   goStartPoint(): void {
     if (!this.startMarkerEntity) {
@@ -37,7 +37,7 @@ export class StepSelectStartPointComponent implements OnInit {
   }
 
   /**
-   * Deletes the starting point and marker from the map
+   * Deletes the start point and marker from the map
    */
   deleteStartPoint(): void {
     if (!this.startMarkerEntity) {
@@ -56,7 +56,7 @@ export class StepSelectStartPointComponent implements OnInit {
       (position: any) => {
         this.deleteStartPoint();
         const lngLat = new LngLat(position.coords.longitude, position.coords.latitude);
-        this.startMarkerEntity = MapUtil.drawMarker(this.map, lngLat, EnumMarker.Default);
+        this.startMarkerEntity = MapUtil.drawMarker(this.map, lngLat, EnumMarker.GREEN_MARKER);
         this.refreshStartMarker.emit(this.startMarkerEntity);
       },
       (err: GeolocationPositionError) => {

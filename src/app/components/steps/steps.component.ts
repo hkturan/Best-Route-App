@@ -32,6 +32,9 @@ export class StepsComponent implements OnInit {
   // Start Marker
   startMarkerEntity: MarkerEntity | undefined;
 
+  // End Marker
+  endMarkerEntity: MarkerEntity | undefined;
+
   // Markers without Start Marker
   listMarkerEntity: MarkerEntity[] = [];
 
@@ -52,6 +55,7 @@ export class StepsComponent implements OnInit {
 
   ngOnInit(): void {
     this.addMapEvents();
+    // throw Error('deneme');
   }
 
   /**
@@ -61,14 +65,16 @@ export class StepsComponent implements OnInit {
     // On Click Event
     this.map.on('click', (e: any) => {
       if (this.currentStep.value === EnumStep.SELECT_START_POINT && !this.startMarkerEntity) {
-        this.startMarkerEntity = MapUtil.drawMarker(this.map, e.lngLat, EnumMarker.Default);
+        this.startMarkerEntity = MapUtil.drawMarker(this.map, e.lngLat, EnumMarker.GREEN_MARKER);
       } else if (this.currentStep.value === EnumStep.MARKER_SELECTION) {
         if (this.listMarkerEntity.length === Constants.MARKER_LIMIT) {
           MessageUtil.showMessage(EnumMessageSeverity.ERROR, 'You cannot mark more than 10 locations');
           return;
         }
-        const markerEntity = MapUtil.drawMarker(this.map, e.lngLat, EnumMarker.Red);
+        const markerEntity = MapUtil.drawMarker(this.map, e.lngLat, EnumMarker.BLUE_MARKER);
         this.listMarkerEntity.push(markerEntity);
+      } else if (this.currentStep.value === EnumStep.SELECT_END_POINT && !this.endMarkerEntity) {
+        this.endMarkerEntity = MapUtil.drawMarker(this.map, e.lngLat, EnumMarker.RED_MARKER);
       }
     });
   }
@@ -83,16 +89,24 @@ export class StepsComponent implements OnInit {
     this.currentStep = StepUtil.getNextStep(this.currentStep);
     if (this.currentStep.value === EnumStep.PREVIEW_ROUTE_PLAN) {
       const pointsForWaypointOptimizations = [];
+      let endPointIndex = -1;
 
       // All Markers of Map (Start Point and Others)
       const allMarkers: MarkerEntity[] = [];
       allMarkers.push(this.startMarkerEntity);
       allMarkers.push(...this.listMarkerEntity);
+      if (this.endMarkerEntity) {
+        allMarkers.push(this.endMarkerEntity);
+      }
 
       // Format Points for Tomtom Api Request
+      let i = 0;
       for (const marker of allMarkers) {
         if (!marker) {
           return;
+        }
+        if (this.endMarkerEntity && marker.id === this.endMarkerEntity.id) {
+          endPointIndex = i;
         }
         const value = {
           point: {
@@ -101,10 +115,11 @@ export class StepsComponent implements OnInit {
           }
         };
         pointsForWaypointOptimizations.push(value);
+        i++;
       }
 
       // Shortest Path Order
-      const optimizedOrder = await MapUtil.getWaypointOptimizatedOrder(pointsForWaypointOptimizations);
+      const optimizedOrder = await MapUtil.getWaypointOptimizatedOrder(pointsForWaypointOptimizations, endPointIndex);
       this.orderedMarkerList = [];
       for (const index of optimizedOrder) {
         this.orderedMarkerList.push(allMarkers[index]);
@@ -152,6 +167,22 @@ export class StepsComponent implements OnInit {
    */
   refreshStartMarker(markerEntity: MarkerEntity): void {
     this.startMarkerEntity = markerEntity;
+  }
+
+  /**
+   * Refresh End Marker from Child Component
+   * @param markerEntity : marker to be refreshed
+   */
+  refreshEndMarker(markerEntity: MarkerEntity): void {
+    this.endMarkerEntity = markerEntity;
+  }
+
+  /**
+   * Refresh Markers from Child Component
+   * @param listMarkerEntity : markers to be refreshed
+   */
+  refreshMarkerList(listMarkerEntity: MarkerEntity[]): void {
+    this.listMarkerEntity = listMarkerEntity;
   }
 
 }

@@ -1,16 +1,29 @@
+<!-- [START] Show Directions Switch -->
 <div class="display-flex p-mt-3 p-ml-3">
   <p-inputSwitch (onChange)="onChangeVisibilityDirections()" [(ngModel)]="visibilityDirections"></p-inputSwitch>
   <label class="switch-directions-label p-ml-2">Show Directions of Route</label>
 </div>
-<ng-container *ngFor="let route of routePlan.listRoute">
-  <app-route [map]="map" [route]="route" [routePlanTemp]="routePlanTemp"></app-route>
-</ng-container>
+<!-- [END] Show Directions Switch -->
+
+<!-- [START] Routes -->
+<div class="routes">
+  <ng-container *ngFor="let route of routePlan.listRoute">
+    <app-route [map]="map" [route]="route" [routePlanTemp]="routePlanTemp"></app-route>
+  </ng-container>
+</div>
+<!-- [END] Routes -->
+
+<!-- [START] Total Distance of Route Plan in KM -->
 <div class="text-align-center p-mt-3">
   <div class="distance-div p-mt-2 p-inline-message p-component p-inline-message-info">
     <span class="distance p-inline-message-text">{{'Total : ' + routePlan?.distanceKm?.toFixed(2) + ' KM'}}</span>
   </div>
 </div>
+<!-- [END] Total Distance of Route Plan in KM -->
+
+<!-- [START] Buttons -->
 <div class="text-align-center p-mt-3">
   <button (click)="backPreview()" pButton label="Back" icon="pi pi-angle-left" class="p-button-sm"></button>
   <button pButton label="New Route" icon="pi pi-plus" class="p-button-sm p-button-info p-ml-2"></button>
 </div>
+<!-- [END] Buttons -->

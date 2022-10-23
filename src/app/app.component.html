@@ -1,9 +1,5 @@
 <div class="main-div">
   <div class="left-div">
-    <!-- [START] : Go Anywhere on Map -->
-    <app-coordinate-search [map]="map"></app-coordinate-search>
-    <!-- [END] : Go Anywhere on Map -->
-
     <!-- [START] : Steps -->
     <app-steps [map]="map"></app-steps>
     <!-- [END] : Steps -->
@@ -13,6 +9,13 @@
     <div id="map"></div>
     <!-- [END] : Map -->
   </div>
+  <!-- [START] : Marker Info -->
+  <app-marker-info></app-marker-info>
+  <!-- [END] : Marker Info -->
+
+  <!-- [START] : Go Anywhere on Map -->
+  <app-coordinate-search [map]="map"></app-coordinate-search>
+  <!-- [END] : Go Anywhere on Map -->
 </div>
 
 <!-- [START] : Toast for Messages -->

@@ -6,3 +6,25 @@
 .table-button .pi {
   font-size: 14px;
 }
+
+.column-width {
+  width: 3rem;
+}
+
+.table-button-go .pi {
+  font-size: 13px;
+}
+
+.table-button-go {
+  height: 24px !important;
+  width: 24px !important;
+}
+
+.col-pad {
+  padding: 0.5rem 0.5rem !important;
+}
+
+:host ::ng-deep .p-inputtext {
+  height: 24px;
+  font-size: 12px;
+}

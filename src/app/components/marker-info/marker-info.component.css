@@ -1,0 +1,19 @@
+.info-main {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  border-radius: 5px;
+  border: 1px solid #c4c4c4;
+  background-color: #ffffff;
+}
+
+.marker-image {
+  height: 18px;
+  width: 18px;
+}
+
+.marker-desc {
+  font-size: 11px;
+  margin-top: 1px;
+  font-weight: 500;
+}

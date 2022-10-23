@@ -19,6 +19,11 @@
   width: 20px;
 }
 
+.table-button-plan {
+  height: 24px !important;
+  width: 24px !important;
+}
+
 .table-button-plan .pi {
   font-size: 13px;
 }

@@ -1,19 +1,22 @@
-<div class="main" *ngIf="routePlan.listRoute.length === 0; else elseBlock">
-  <!-- Steps -->
+<div class="main" *ngIf="routePlan.listRoute.length === 0; else blockPlan">
+  <!-- [START] Steps -->
   <div class="p-mt-4">
     <p-steps [model]="steps" [(activeIndex)]="currentStep.index"></p-steps>
   </div>
-  <!-- Steps -->
+  <!-- [START] Steps -->
 
-  <!-- Current Step Header -->
+  <!-- [START] Current Step Messages -->
   <div class="p-mt-3 text-align-center display-grid">
     <p-message *ngIf="disableButtonNextStep(); else elseBlockMessage" severity="info" [text]="currentStep.header"></p-message>
     <ng-template #elseBlockMessage>
-      <p-message severity="success" [text]="currentStep.successMessage"></p-message>
+      <p-message *ngIf="currentStep.successMessage !== ''; else elseBlockSuccess" severity="success" [text]="currentStep.successMessage"></p-message>
+      <ng-template #elseBlockSuccess>
+        <p-message severity="info" [text]="currentStep.header"></p-message>
+      </ng-template>
     </ng-template>
     <p-message styleClass="p-mt-2" *ngIf="currentStep.infoMessage !== ''" severity="info" [text]="currentStep.infoMessage"></p-message>
   </div>
-  <!-- Current Step Header -->
+  <!-- [END] Current Step Messages -->
 
   <ng-container [ngSwitch]="currentStep.value">
     <!-- [START] Step 1 : Select Start Point -->
@@ -24,20 +27,24 @@
 
     <!-- [START] Step 2 : Marker Selection -->
     <ng-container *ngSwitchCase="enumStep.MARKER_SELECTION">
-      <app-step-marker-selection [map]="map" [listMarkerEntity]="listMarkerEntity"></app-step-marker-selection>
+      <app-step-marker-selection [map]="map" [listMarkerEntity]="listMarkerEntity" (refreshMarkerList)="refreshMarkerList($event)"></app-step-marker-selection>
     </ng-container>
     <!-- [END] Step 2 : Marker Selection -->
 
-    <!-- [START] Step 3 : Preview & Reorder Route Plan -->
+    <!-- [START] Step 3 : Select End Point -->
+    <ng-container *ngSwitchCase="enumStep.SELECT_END_POINT">
+      <app-step-select-end-point [map]="map" [endMarkerEntity]="endMarkerEntity" (refreshEndMarker)="refreshEndMarker($event)"></app-step-select-end-point>
+    </ng-container>
+    <!-- [END] Step 3 : Select End Point -->
+
+    <!-- [START] Step 4 : Preview & Reorder Route Plan -->
     <ng-container *ngSwitchCase="enumStep.PREVIEW_ROUTE_PLAN">
       <app-step-preview-route-plan [map]="map" [orderedMarkerList]="orderedMarkerList"></app-step-preview-route-plan>
     </ng-container>
-    <!-- [END] Step 3 : Preview & Reorder Route Plan -->
-    <ng-container *ngSwitchDefault>
-
-    </ng-container>
+    <!-- [END] Step 4 : Preview & Reorder Route Plan -->
   </ng-container>
 
+  <!-- [START] Step Buttons -->
   <div class="p-col p-p-0 p-mt-4 p-grid p-nogutter p-justify-between ng-star-inserted">
     <button pButton [disabled]="currentStep.value === enumStep.SELECT_START_POINT" (click)="onClickBackStep()" label="Back" icon="pi pi-angle-left" class="p-button-sm"></button>
     <button pButton [disabled]="disableButtonNextStep()" *ngIf="currentStep.value !== enumStep.PREVIEW_ROUTE_PLAN; else elseBlockStepButton" (click)="onClickNextStep()" label="Next" icon="pi pi-angle-right" class="p-button-sm" iconPos="right"></button>
@@ -45,9 +52,13 @@
       <button pButton (click)="onClickCompleteStep()" label="Complete" icon="pi pi-angle-right" class="p-button-sm p-button-success" iconPos="right"></button>
     </ng-template>
   </div>
+  <!-- [END] Step Buttons -->
+
 </div>
-<ng-template #elseBlock>
+<ng-template #blockPlan>
+  <!-- [START] Route Plan -->
   <app-route-plan [map]="map" [routePlan]="routePlan" [routePlanTemp]="routePlanTemp"></app-route-plan>
+  <!-- [END] Route Plan -->
 </ng-template>
 
 

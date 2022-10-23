@@ -1,0 +1,29 @@
+<!-- [START] Get Live Location Automatically -->
+<div class="p-mt-3 text-align-center">
+  <p-button (click)="getLiveLocation()" label="Get Live Location" icon="pi pi-map-marker" styleClass="p-button-sm p-button-danger"></p-button>
+</div>
+<!-- [END] Get Live Location Automatically -->
+
+<!-- [START] End Marker Object -->
+<div *ngIf="endMarkerEntity" class="p-col p-p-0 p-mt-3 end-marker">
+  <div class="display-flex">
+    <div class="end-marker-img p-p-4">
+      <img class="cursor-pointer" (click)="goEndPoint()" pTooltip="Go" tooltipPosition="top" src="{{'assets/images/' + endMarkerEntity.enumMarker.imgName}}">
+    </div>
+    <div class="p-col p-p-1">
+      <div class="text-align-center p-pt-1 font-weight-600 font-size-14 end-point-div">End Point</div>
+      <div class="display-flex p-mt-1">
+        <div class="font-size-14 font-weight-600 end-marker-lng">Longitude : </div>
+        <div class="font-size-13">{{endMarkerEntity.marker.getLngLat().lng}}</div>
+      </div>
+      <div class="display-flex">
+        <div class="font-size-14 font-weight-600 end-marker-lat">Latitude : </div>
+        <div class="font-size-13">{{endMarkerEntity.marker.getLngLat().lat}}</div>
+      </div>
+    </div>
+    <div class="button-div">
+      <button (click)="deleteEndPoint()" pTooltip="Delete" tooltipPosition="top" pButton pRipple type="button" icon="pi pi-times" class="end-marker-delete-button float-right p-button-rounded p-button-danger p-button-text"></button>
+    </div>
+  </div>
+</div>
+<!-- [END] End Marker Object -->

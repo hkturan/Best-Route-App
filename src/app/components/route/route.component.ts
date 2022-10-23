@@ -37,8 +37,9 @@ export class RouteComponent implements OnInit {
         const lineNew = {...line};
         lineNew.id = HelperUtil.getLineNextIdFromHtml();
         lineNew.lineOptions = new LineOptions();
-        lineNew.lineOptions.lineColor = '#2e8035';
-        listLineNew.push(MapUtil.drawLine(this.map, lineNew, EnumMarker.Green));
+        const markerEnumValue = EnumMarker.GREEN_DIRECTION_MARKER;
+        lineNew.lineOptions.lineColor = markerEnumValue.color;
+        listLineNew.push(MapUtil.drawLine(this.map, lineNew, markerEnumValue));
       }
       routeNew.id = this.counterService.getCounterValue(EnumCounterType.ROUTE);
       routeNew.listLine = listLineNew;

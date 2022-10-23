@@ -11,6 +11,8 @@ import {RoutePlan} from '../entities/route-plan';
 import {MapService} from '../services/map.service';
 import {MessageUtil} from './message-util';
 import {EnumMessageSeverity} from '../enums/enum-message-severity';
+import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+import {services} from '@tomtom-international/web-sdk-services';
 
 export class MapUtil {
 
@@ -33,6 +35,7 @@ export class MapUtil {
       zoom: Constants.MAP_ZOOM
     });
     map.addControl(new tt.NavigationControl());
+    this.addSearchBox(map);
     return map;
   }
 
@@ -48,7 +51,7 @@ export class MapUtil {
     map.addLayer(this.getLineLayer(line));
 
     // Create Marker center of line
-    const marker = this.drawMarker(map, new LngLat((line.startCoordinates.lng + line.endCoordinates.lng) / 2, (line.startCoordinates.lat + line.endCoordinates.lat) / 2), enumMarker ? enumMarker : EnumMarker.Blue, HelperUtil.getLineMarkerNextIdFromHtml());
+    const marker = this.drawMarker(map, new LngLat((line.startCoordinates.lng + line.endCoordinates.lng) / 2, (line.startCoordinates.lat + line.endCoordinates.lat) / 2), enumMarker ? enumMarker : EnumMarker.BLUE_DIRECTION_MARKER, HelperUtil.getLineMarkerNextIdFromHtml());
     marker.rotate = -45 + this.calculateDegreeOfTwoPoints(line.startCoordinates, line.endCoordinates);
     this.changeDirectionOfMarker(marker);
 
@@ -66,7 +69,7 @@ export class MapUtil {
    * @param map : map to draw lines
    * @param data : coordinate to draw marker
    * @param enumMarker : Marker type
-   * @param markerId : Marker's id (Optional)
+   * @param markerId : Marker id (Optional)
    * @returns Line : drawed marker
    */
   static drawMarker(map: any, data: LngLat, enumMarker: EnumMarker, markerId?: string): MarkerEntity {
@@ -85,9 +88,6 @@ export class MapUtil {
     marker.getElement().addEventListener('click', () => {
       // console.log(marker.getElement().id);
     });
-    if (!markerId) {
-      marker.setPopup(new tt.Popup({offset: 35}).setHTML(name));
-    }
     marker.addTo(map);
 
     const markerEntity = new MarkerEntity();
@@ -98,6 +98,13 @@ export class MapUtil {
     return markerEntity;
   }
 
+  /**
+   * Draw Route on Map
+   * @param map : map to draw Route
+   * @param httpClient : client to use the tomtom api calculateRoute method
+   * @param route : route info
+   * @returns Route : drawed marker
+   */
   static async drawRoute(httpClient: HttpClient, map: any, route: Route): Promise<Route> {
     const listLine: Line[] = [];
     const startPoint = route.startMarker.marker.getLngLat();
@@ -122,10 +129,19 @@ export class MapUtil {
     return route;
   }
 
-  static removeLine(map: any, id: string): void {
-    map.removeLayer(id);
+  /**
+   * Delete line from map
+   * @param map : map
+   * @param lineId : line id to delete
+   */
+  static removeLine(map: any, lineId: string): void {
+    map.removeLayer(lineId);
   }
 
+  /**
+   * Delete line from map
+   * @param id : marker id to delete
+   */
   static removeMarker(id: string): void {
     const element = document.getElementById(id) as HTMLElement;
     if (element) {
@@ -133,14 +149,24 @@ export class MapUtil {
     }
   }
 
-  // Go Anywhere on Map
+  /**
+   * Go Anywhere on Map
+   * @param map : map
+   * @param inputLng : longitude value
+   * @param inputLat : latitude value
+   */
   static goAnywhereOnMap(map: any, inputLng: any, inputLat: any): void {
     map.flyTo({
       center: new LngLat(Number(inputLng), Number(inputLat))
     });
   }
 
-  // Go Anywhere on Map With Marker
+  /**
+   * Go Anywhere on Map with Marker
+   * @param map : map
+   * @param marker : marker to blink
+   * @param isBlink : if parameter is true, marker blinks three times (default : true)
+   */
   static goAnywhereOnMapWithMarker(map: any, marker: MarkerEntity, isBlink = true): void {
     map.flyTo({
       center: marker.marker.getLngLat()
@@ -152,6 +178,7 @@ export class MapUtil {
 
   /**
    * Blink Marker Event
+   * @param markerEntity : marker to blink
    */
   static blinkMarker(markerEntity: MarkerEntity): void {
     const element = document.getElementById(markerEntity.id) as HTMLElement;
@@ -159,6 +186,11 @@ export class MapUtil {
     setTimeout(() => { element.classList.remove('blink'); }, 1250);
   }
 
+  /**
+   * Distance between two points
+   * @param data1 : (LngLat) first point
+   * @param data2 : (LngLat) second point
+   */
   static getDistanceInKm(data1: LngLat, data2: LngLat): number {
     const R = 6371; // Radius of the earth in km
     const dLat = this.deg2rad(data2.lat - data1.lat);  // deg2rad below
@@ -173,15 +205,31 @@ export class MapUtil {
     return d;
   }
 
+  /**
+   * Convert degree to radian
+   * @param deg : degree
+   * @returns number : radian
+   */
   static deg2rad(deg: number): number {
     return deg * (Math.PI / 180);
   }
 
+  /**
+   * Degree between two points
+   * @param data1 : (LngLat) first point
+   * @param data2 : (LngLat) second point
+   * @returns number : degree
+   */
   static calculateDegreeOfTwoPoints(data1: LngLat, data2: LngLat): number {
     const angleDeg = Math.atan2(data2.lng - data1.lng, data2.lat - data1.lat) * 180 / Math.PI;
     return angleDeg;
   }
 
+  /**
+   * Calculate total distance of Route
+   * @param route : Route
+   * @returns number : distance in Kilometer
+   */
   static getRouteDistance(route: Route): number {
     let distance = 0;
     for (const line of route.listLine) {
@@ -190,6 +238,10 @@ export class MapUtil {
     return distance;
   }
 
+  /**
+   * Change direction of marker
+   * @param marker : Marker Object
+   */
   static changeDirectionOfMarker(marker: MarkerEntity): void {
     setTimeout(() => {
       const element = document.getElementById(marker.id) as HTMLElement;
@@ -261,7 +313,7 @@ export class MapUtil {
     return totalDistance;
   }
 
-  static async getWaypointOptimizatedOrder(pointsForWaypointOptimizations: any): Promise<any[]> {
+  static async getWaypointOptimizatedOrder(pointsForWaypointOptimizations: any, endPointIndex: number): Promise<any[]> {
     let optimizedOrder: any[] = [];
     const requestBody = {
       waypoints: pointsForWaypointOptimizations,
@@ -271,7 +323,7 @@ export class MapUtil {
         outputExtensions: ['travelTimes', 'routeLengths'],
         waypointConstraints : {
           originIndex: 0,
-          destinationIndex: -1
+          destinationIndex: endPointIndex
         }
       }
     };
@@ -281,6 +333,43 @@ export class MapUtil {
       MessageUtil.showHttpError(error);
     });
     return optimizedOrder;
+  }
+
+  static addSearchBox(map: any): void {
+    let searchMarker: MarkerEntity | undefined;
+    const options = {
+      idleTimePress: 100,
+      minNumberOfCharacters: 0,
+      searchOptions: {
+        key: Constants.TOMTOM_API_KEY,
+        language: Constants.LANGUAGE,
+        limit: 5
+      },
+      autocompleteOptions: {
+        key: Constants.TOMTOM_API_KEY,
+        language: Constants.LANGUAGE
+      },
+      noResultsMessage: 'No results found.'
+    };
+    const ttSearchBox = new SearchBox(services, options);
+    map.addControl(ttSearchBox, 'top-left');
+
+    ttSearchBox.on('tomtom.searchbox.resultselected', (data) => {
+      if (searchMarker) {
+        MapUtil.removeMarker(searchMarker.id);
+      }
+      const position = (data.data.result as any).position;
+      const lngLat = new LngLat(position.lng, position.lat);
+      searchMarker = MapUtil.drawMarker(map, lngLat, EnumMarker.PURPLE_MARKER);
+      MapUtil.goAnywhereOnMapWithMarker(map, searchMarker);
+    });
+
+    ttSearchBox.on('tomtom.searchbox.resultscleared', () => {
+      if (!searchMarker) {
+        return;
+      }
+      MapUtil.removeMarker(searchMarker.id);
+    });
   }
 
 }

@@ -1,9 +1,10 @@
-<!-- Get Live Location Automatically -->
+<!-- [START] Get Live Location Automatically -->
 <div class="p-mt-3 text-align-center">
   <p-button (click)="getLiveLocation()" label="Get Live Location" icon="pi pi-map-marker" styleClass="p-button-sm p-button-danger"></p-button>
 </div>
-<!-- Get Live Location Automatically -->
+<!-- [END] Get Live Location Automatically -->
 
+<!-- [START] Start Marker Object -->
 <div *ngIf="startMarkerEntity" class="p-col p-p-0 p-mt-3 start-marker">
   <div class="display-flex">
     <div class="start-marker-img p-p-4">
@@ -21,7 +22,8 @@
       </div>
     </div>
     <div class="button-div">
-      <button (click)="deleteStartPoint()" pTooltip="Delete" tooltipPosition="top" pButton pRipple type="button" icon="pi pi-times" class="start-marker-delete-button float-right p-button-rounded p-button-danger p-button-text"></button>
+      <button (click)="deleteStartPoint()" pTooltip="Delete" tooltipPosition="top" pButton pRipple type="button" icon="pi pi-times" class="start-marker-delete-button float-right p-button-rounded p-button-success p-button-text"></button>
     </div>
   </div>
 </div>
+<!-- [END] Start Marker Object -->

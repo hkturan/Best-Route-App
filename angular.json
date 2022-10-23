@@ -32,7 +32,8 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.css",
-              "node_modules/primeflex/primeflex.css"
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.css"
             ],
             "scripts": []
           },
@@ -99,7 +100,8 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.css",
-              "node_modules/primeflex/primeflex.css"
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.css"
             ],
             "scripts": []
           }

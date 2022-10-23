@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -28,6 +28,9 @@ import { RoutePlanComponent } from './components/route-plan/route-plan.component
 import {MapService} from './services/map.service';
 import { StepMarkerSelectionComponent } from './components/steps/step-marker-selection/step-marker-selection.component';
 import { StepPreviewRoutePlanComponent } from './components/steps/step-preview-route-plan/step-preview-route-plan.component';
+import { StepSelectEndPointComponent } from './components/steps/step-select-end-point/step-select-end-point.component';
+import { MarkerInfoComponent } from './components/marker-info/marker-info.component';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { StepPreviewRoutePlanComponent } from './components/steps/step-preview-r
     StepSelectStartPointComponent,
     RoutePlanComponent,
     StepMarkerSelectionComponent,
-    StepPreviewRoutePlanComponent
+    StepPreviewRoutePlanComponent,
+    StepSelectEndPointComponent,
+    MarkerInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +63,8 @@ import { StepPreviewRoutePlanComponent } from './components/steps/step-preview-r
     ToastModule,
     MessagesModule,
     MessageModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    OverlayPanelModule
   ],
   providers: [CounterService, MessageService, MapService],
   bootstrap: [AppComponent],

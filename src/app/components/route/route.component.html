@@ -1,22 +1,35 @@
 <div class="main">
   <div (click)="onClickRoute(route!)" [class]="'p-pt-1 display-flex route' + (route!.selected ? ' selected' : '')">
     <div class="route-info">
+      <!-- [START] Route Name -->
       <div class="p-inline-message p-component p-inline-message-info">
         <span class="p-inline-message-icon pi pi-map-marker"></span>
         <span class="route-text p-inline-message-text">{{route!.name}}</span>
       </div>
+      <!-- [END] Route Name -->
+
+      <!-- [START] Route Distance Info -->
       <div class="distance-div p-mt-2 p-inline-message p-component p-inline-message-info">
         <span class="distance p-inline-message-text">{{route!.distanceKm.toFixed(2) + ' KM'}}</span>
       </div>
+      <!-- [END] Route Distance Info -->
     </div>
+    <!-- [START] First Marker -->
     <div class="start-marker-div">
       <label class="start-marker-label">{{route!.startMarker.name}}</label>
     </div>
+    <!-- [END] First Marker -->
+
+    <!-- [START] Destination Image -->
     <div class="p-col">
       <img src="assets/images/destination.png">
     </div>
+    <!-- [END] Destination Image -->
+
+    <!-- [START] Second Marker -->
     <div class="end-marker-div">
       <label>{{route!.endMarker.name}}</label>
     </div>
+    <!-- [END] Second Marker -->
   </div>
 </div>

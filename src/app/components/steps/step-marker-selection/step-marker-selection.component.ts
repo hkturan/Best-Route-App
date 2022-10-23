@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MapUtil} from '../../../utils/map-util';
 import {MarkerEntity} from '../../../entities/marker.entity';
 
@@ -9,6 +9,9 @@ import {MarkerEntity} from '../../../entities/marker.entity';
 })
 export class StepMarkerSelectionComponent implements OnInit {
 
+  // Utils
+  mapUtil = MapUtil;
+
   // Map
   @Input() map: any;
 
@@ -16,7 +19,10 @@ export class StepMarkerSelectionComponent implements OnInit {
   @Input() listMarkerEntity: MarkerEntity[] = [];
 
   // Selected Marker on Table
-  selectedMarkerEntity: MarkerEntity | undefined;
+  selectedMarkerEntities: MarkerEntity[] = [];
+
+  // For Refresh Start Marker
+  @Output() refreshMarkerList = new EventEmitter<MarkerEntity[]>();
 
   constructor() {
   }
@@ -24,46 +30,29 @@ export class StepMarkerSelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /**
-   * onRowSelect event of marker table
-   */
-  onRowSelectMarker(): void {
-    if (!this.selectedMarkerEntity) {
-      return;
-    }
-    MapUtil.goAnywhereOnMapWithMarker(this.map, this.selectedMarkerEntity);
-  }
 
   /**
    * Deletes the selected marker from the table
    */
-  deleteSelectedMarker(): void {
-    if (!this.selectedMarkerEntity) {
+  deleteSelectedMarkers(): void {
+    if (!this.selectedMarkerEntities) {
       return;
     }
-    this.deleteMarker(this.selectedMarkerEntity, true);
-  }
-
-  /**
-   * Deletes all markers but the start marker
-   */
-  deleteAllMarkers(): void {
-    this.listMarkerEntity.forEach(e => this.deleteMarker(e, false));
-    this.listMarkerEntity = [];
+    for (const marker of this.selectedMarkerEntities) {
+      this.deleteMarker(marker);
+    }
+    this.refreshMarkerList.emit(this.listMarkerEntity);
   }
 
   /**
    * Deletes all markers but the start marker
    * @param markerEntity : marker to be deleted
    */
-  deleteMarker(markerEntity: MarkerEntity, deleteList: boolean): void {
+  deleteMarker(markerEntity: MarkerEntity): void {
     if (!markerEntity) {
       return;
     }
     MapUtil.removeMarker(markerEntity.id);
-    if (!deleteList) {
-      return;
-    }
     const marker = this.listMarkerEntity.find(e => e.id === markerEntity.id);
     if (!marker) {
       return;

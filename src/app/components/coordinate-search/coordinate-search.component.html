@@ -1,28 +1,35 @@
-<div class="display-flex main">
-  <!-- Longitude -->
-  <div class="p-col-5 p-pl-0">
+<p-overlayPanel #op appendTo="body">
+  <ng-template pTemplate>
+    <div class="display-flex main">
+      <!-- [START] Longitude -->
+      <div class="p-col-5 p-pl-0">
     <span class="p-float-label">
       <input [(ngModel)]="inputLng" id="float-input-lat" type="text" pinputtext=""
              class="height-35 width-webkit-fill p-inputtext p-component p-element ng-valid ng-touched ng-dirty p-filled">
       <label for="float-input-lat">Longitude</label>
     </span>
-  </div>
-  <!-- Longitude -->
+      </div>
+      <!-- [END] Longitude -->
 
-  <!-- Latitude -->
-  <div class="p-col-5 p-pr-0">
+      <!-- [START] Latitude -->
+      <div class="p-col-5 p-pr-0">
     <span class="p-float-label">
       <input [(ngModel)]="inputLat" id="float-input-lng" type="text" pinputtext=""
              class="height-35 width-webkit-fill p-inputtext p-component p-element ng-valid ng-touched ng-dirty p-filled">
       <label for="float-input-lng">Latitude</label>
     </span>
-  </div>
-  <!-- Latitude -->
+      </div>
+      <!-- [END] Latitude -->
 
-  <!-- Go Button -->
-  <div class="p-col-2 p-pr-0">
-    <p-button (click)="mapUtil.goAnywhereOnMap(map, inputLng, inputLat)" label="Go"
-              styleClass="width-webkit-fill p-ml-2 p-button-sm p-button-info"></p-button>
-  </div>
-  <!-- Go Button -->
-</div>
+      <!-- [START] Go Button -->
+      <div class="p-col-2 p-pr-0">
+        <p-button (click)="mapUtil.goAnywhereOnMap(map, inputLng, inputLat)" label="Search"
+                  styleClass="width-webkit-fill p-ml-2 p-button-sm p-button-info"></p-button>
+      </div>
+      <!-- [END] Go Button -->
+    </div>
+  </ng-template>
+</p-overlayPanel>
+
+<button pButton pRipple type="button" icon="pi pi-search" class="absolute-button p-button-rounded p-button-info" (click)="op.toggle($event)"></button>
+<!--<button class="absolute-button" type="text" pButton label="Basic" (click)="op.toggle($event)"></button>-->
