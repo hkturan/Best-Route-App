@@ -60,6 +60,7 @@ export class StepSelectEndPointComponent implements OnInit {
         this.refreshEndMarker.emit(this.endMarkerEntity);
       },
       (err: GeolocationPositionError) => {
+        throw new Error('Error! Code : ' + err.code + ' , Message : ' + err.message);
       },
       {
         enableHighAccuracy: true,

@@ -36,7 +36,7 @@ export class StepUtil {
   static getStepWithIndex(index: number): Step {
     const step = this.steps.find(e => e.index === index) as Step;
     if (!step) {
-      // TODO : ERROR
+      throw new Error('Step object cannot be empty!');
     }
     return step;
   }
@@ -49,7 +49,7 @@ export class StepUtil {
   static getNextStep(currentStep: Step): Step {
     const nextStep = this.steps.find(e => e.index === currentStep.index + 1) as Step;
     if (!nextStep) {
-      // TODO : ERROR
+      throw new Error('Next step object cannot be empty!');
     }
     return nextStep;
   }
@@ -62,7 +62,7 @@ export class StepUtil {
   static getBackStep(currentStep: Step): Step {
     const backStep = this.steps.find(e => e.index === currentStep.index - 1) as Step;
     if (!backStep) {
-      // TODO : ERROR
+      throw new Error('Back Step object cannot be empty!');
     }
     return backStep;
   }

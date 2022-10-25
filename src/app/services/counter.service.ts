@@ -6,7 +6,8 @@ export class CounterService {
 
   private counterList = [
     {counterType: EnumCounterType.ROUTE, counterValue: 0},
-    {counterType: EnumCounterType.LINE, counterValue: 0}
+    {counterType: EnumCounterType.LINE, counterValue: 0},
+    {counterType: EnumCounterType.MARKER, counterValue: 0}
   ];
 
   /**

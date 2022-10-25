@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Route} from '../../entities/route';
-import {HelperUtil} from '../../utils/helper-util';
 import {MapUtil} from '../../utils/map-util';
 import {LineOptions} from '../../entities/line-options';
 import {EnumMarker} from '../../enums/enum-marker';
 import {RoutePlan} from '../../entities/route-plan';
 import {CounterService} from '../../services/counter.service';
 import {EnumCounterType} from '../../enums/enum-counter-type';
+import {Constants} from '../../helper/constants';
 
 @Component({
   selector: 'app-route',
@@ -35,7 +35,7 @@ export class RouteComponent implements OnInit {
       const listLineNew = [];
       for (const line of routeNew.listLine) {
         const lineNew = {...line};
-        lineNew.id = HelperUtil.getLineNextIdFromHtml();
+        lineNew.id = Constants.LINE_ID + this.counterService.getCounterValue(EnumCounterType.LINE);
         lineNew.lineOptions = new LineOptions();
         const markerEnumValue = EnumMarker.GREEN_DIRECTION_MARKER;
         lineNew.lineOptions.lineColor = markerEnumValue.color;

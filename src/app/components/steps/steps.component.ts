@@ -59,7 +59,7 @@ export class StepsComponent implements OnInit {
   }
 
   /**
-   * Adds events to map
+   * Add events to map
    */
   addMapEvents(): void {
     // On Click Event
@@ -80,7 +80,7 @@ export class StepsComponent implements OnInit {
   }
 
   /**
-   * Goes to next step
+   * Go to next step
    */
   async onClickNextStep(): Promise<void> {
     if (!this.startMarkerEntity) {
@@ -128,14 +128,14 @@ export class StepsComponent implements OnInit {
   }
 
   /**
-   * Goes to back step
+   * Go to back step
    */
   onClickBackStep(): void {
     this.currentStep = StepUtil.getBackStep(this.currentStep);
   }
 
   /**
-   * Finishes all steps and draw route
+   * Finish all steps and draw route
    */
   async onClickCompleteStep(): Promise<void> {
     // Draw Route
@@ -149,7 +149,7 @@ export class StepsComponent implements OnInit {
   }
 
   /**
-   * Checks for next step
+   * Check for next step
    * @returns boolean
    */
   disableButtonNextStep(): boolean {
@@ -163,7 +163,7 @@ export class StepsComponent implements OnInit {
 
   /**
    * Refresh Start Marker from Child Component
-   * @param markerEntity : marker to be refreshed
+   * @param markerEntity : marker to refresh
    */
   refreshStartMarker(markerEntity: MarkerEntity): void {
     this.startMarkerEntity = markerEntity;
@@ -171,7 +171,7 @@ export class StepsComponent implements OnInit {
 
   /**
    * Refresh End Marker from Child Component
-   * @param markerEntity : marker to be refreshed
+   * @param markerEntity : marker to refresh
    */
   refreshEndMarker(markerEntity: MarkerEntity): void {
     this.endMarkerEntity = markerEntity;
@@ -179,7 +179,7 @@ export class StepsComponent implements OnInit {
 
   /**
    * Refresh Markers from Child Component
-   * @param listMarkerEntity : markers to be refreshed
+   * @param listMarkerEntity : markers to refresh
    */
   refreshMarkerList(listMarkerEntity: MarkerEntity[]): void {
     this.listMarkerEntity = listMarkerEntity;

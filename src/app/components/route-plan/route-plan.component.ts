@@ -53,7 +53,7 @@ export class RoutePlanComponent implements OnInit {
 
   /**
    * Change Visibility of Route's Direction Markers
-   * @param markerEntity : marker to be deleted
+   * @param markerEntity : marker to deleted
    */
   onChangeVisibilityDirections(value?: boolean): void {
     const list = [this.routePlanTemp.listRoute, this.routePlan.listRoute];

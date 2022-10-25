@@ -13,10 +13,14 @@ import {MessageUtil} from './message-util';
 import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 import {services} from '@tomtom-international/web-sdk-services';
 import {LineOptions} from '../entities/line-options';
+import {delay} from 'rxjs/operators';
+import {CounterService} from '../services/counter.service';
+import {EnumCounterType} from '../enums/enum-counter-type';
 
 export class MapUtil {
 
   static mapService: MapService;
+  static counterService: CounterService;
 
   /**
    * set Map Service to util
@@ -27,8 +31,16 @@ export class MapUtil {
   }
 
   /**
+   * set Counter Service to util
+   * @param counterService : Counter Service
+   */
+  static setCounterService(counterService: CounterService): void {
+    this.counterService = counterService;
+  }
+
+  /**
    * Create Map (Tomtom)
-   * @param map : map to be create
+   * @param map : map to create
    * @returns any : created map
    */
   static createMap(map: any): any {
@@ -46,7 +58,7 @@ export class MapUtil {
   /**
    * Draw Line on Map
    * @param map : map to draw lines
-   * @param line : line to be draw
+   * @param line : line to draw
    * @param enumMarker : Marker type for center of line
    * @returns Line : drawed line
    */
@@ -55,7 +67,7 @@ export class MapUtil {
     map.addLayer(this.getLineLayer(line));
 
     // Create Marker center of line
-    const marker = this.drawMarker(map, new LngLat((line.startCoordinates.lng + line.endCoordinates.lng) / 2, (line.startCoordinates.lat + line.endCoordinates.lat) / 2), enumMarker ? enumMarker : EnumMarker.BLUE_DIRECTION_MARKER, HelperUtil.getLineMarkerNextIdFromHtml());
+    const marker = this.drawMarker(map, new LngLat((line.startCoordinates.lng + line.endCoordinates.lng) / 2, (line.startCoordinates.lat + line.endCoordinates.lat) / 2), enumMarker ? enumMarker : EnumMarker.BLUE_DIRECTION_MARKER, Constants.LINE_MARKER_ID + this.counterService.getCounterValue(EnumCounterType.MARKER));
     marker.rotate = -45 + this.calculateDegreeOfTwoPoints(line.startCoordinates, line.endCoordinates);
     this.changeDirectionOfMarker(marker);
 
@@ -85,7 +97,7 @@ export class MapUtil {
     if (markerId) {
       markerElement.style.visibility = Constants.IS_SHOW_ROUTE_DIRECTIONS ? 'visible' : 'hidden';
     }
-    const id = markerId ? markerId : HelperUtil.getMarkerNextIdFromHtml();
+    const id = markerId ? markerId : Constants.MARKER_ID + this.counterService.getCounterValue(EnumCounterType.MARKER);
     const name = Constants.MARKER_NAME + ' ' + id.replace(Constants.MARKER_ID, '');
     const marker = new tt.Marker({element: markerElement, anchor: 'center', draggable: true}).setLngLat([data.lng, data.lat]);
     marker.getElement().id = id;
@@ -122,7 +134,7 @@ export class MapUtil {
         const lineOptions = new LineOptions();
         lineOptions.lineColor = EnumMarker.BLUE_DIRECTION_MARKER.color;
         line.lineOptions = lineOptions;
-        line.id = HelperUtil.getLineNextIdFromHtml();
+        line.id = Constants.LINE_ID + this.counterService.getCounterValue(EnumCounterType.LINE);
         const data1 = points[i];
         const data2 = points[i + 1];
         line.startCoordinates = new LngLat(data1.longitude, data1.latitude);
@@ -131,8 +143,14 @@ export class MapUtil {
       }
       route.listLine = listLine;
       route.distanceKm = this.getRouteDistance(route);
-    }).catch((error: HttpErrorResponse) => {
-      MessageUtil.showHttpError(error);
+    }).catch(async (error: HttpErrorResponse) => {
+      // 429 : Too Many Requests: Too many requests were sent in a given amount of time for the supplied API Key.
+      if (error.status === 429) {
+        await delay(100);
+        await this.drawRoute(httpClient, map, route);
+      } else {
+        MessageUtil.showHttpError(error);
+      }
     });
     return route;
   }

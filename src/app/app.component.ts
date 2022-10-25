@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {HelperUtil} from './utils/helper-util';
 import {MapUtil} from './utils/map-util';
 import {MessageService} from 'primeng/api';
 import {MessageUtil} from './utils/message-util';
@@ -22,14 +21,20 @@ export class AppComponent implements OnInit {
     private mapService: MapService,
     private counterService: CounterService
   ) {
-    // Set Services to Utils
-    MessageUtil.setMessageService(this.messageService);
-    MapUtil.setMapService(this.mapService);
-    HelperUtil.setCounterService(this.counterService);
+    this.setServicesToUtils();
   }
 
   ngOnInit(): void {
     this.map = MapUtil.createMap(this.map);
+  }
+
+  /**
+   * Set Services to Utils
+   */
+  setServicesToUtils(): void {
+    MessageUtil.setMessageService(this.messageService);
+    MapUtil.setMapService(this.mapService);
+    MapUtil.setCounterService(this.counterService);
   }
 
 }

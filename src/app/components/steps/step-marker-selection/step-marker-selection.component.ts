@@ -46,7 +46,7 @@ export class StepMarkerSelectionComponent implements OnInit {
 
   /**
    * Deletes all markers but the start marker
-   * @param markerEntity : marker to be deleted
+   * @param markerEntity : marker to delete
    */
   deleteMarker(markerEntity: MarkerEntity): void {
     if (!markerEntity) {
