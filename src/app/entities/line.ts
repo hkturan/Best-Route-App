@@ -14,6 +14,5 @@ export interface Line {
 
 export class Line {
   constructor() {
-    this.lineOptions = new LineOptions();
   }
 }

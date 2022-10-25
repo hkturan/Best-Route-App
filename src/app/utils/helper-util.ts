@@ -6,12 +6,21 @@ export class HelperUtil {
 
   static counterService: CounterService;
 
+  /**
+   * set Counter Service to util
+   * @param counterService : Counter Service
+   */
   static setCounterService(counterService: CounterService): void {
     this.counterService = counterService;
   }
 
-  static getImageFromAssets(url: string): string {
-    return 'url(\'' + Constants.IMAGE_PATH + url + '\')';
+  /**
+   * Get image from assets folder (image path)
+   * @param fileName : File name
+   * @returns string : image full url
+   */
+  static getImageFromAssets(fileName: string): string {
+    return 'url(\'' + Constants.IMAGE_PATH + fileName + '\')';
   }
 
   static getMarkerNextIdFromHtml(): string {

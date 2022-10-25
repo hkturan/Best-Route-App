@@ -27,7 +27,7 @@ export class StepSelectEndPointComponent implements OnInit {
   }
 
   /**
-   * Goes to the end point on the map
+   * Go to the end point on the map
    */
   goEndPoint(): void {
     if (!this.endMarkerEntity) {
@@ -37,7 +37,7 @@ export class StepSelectEndPointComponent implements OnInit {
   }
 
   /**
-   * Deletes the end point and marker from the map
+   * Delete the end point and marker from the map
    */
   deleteEndPoint(): void {
     if (!this.endMarkerEntity) {
@@ -49,7 +49,7 @@ export class StepSelectEndPointComponent implements OnInit {
   }
 
   /**
-   * Gets your live location in real time
+   * Get your live location in real time
    */
   getLiveLocation(): void {
     navigator.geolocation.watchPosition(

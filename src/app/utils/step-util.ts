@@ -5,6 +5,10 @@ export class StepUtil {
 
   static steps: Step[] = [];
 
+  /**
+   * get All Steps
+   * @returns Step[] : Step List
+   */
   static getSteps(): Step[] {
     if (this.steps.length === 0) {
       this.createSteps();
@@ -24,6 +28,11 @@ export class StepUtil {
     ];
   }
 
+  /**
+   * get Step with Index
+   * @param index : index to search
+   * @returns Step : Finding step
+   */
   static getStepWithIndex(index: number): Step {
     const step = this.steps.find(e => e.index === index) as Step;
     if (!step) {
@@ -32,6 +41,11 @@ export class StepUtil {
     return step;
   }
 
+  /**
+   * get Next Step
+   * @param currentStep : Current step
+   * @returns Step : next of current step
+   */
   static getNextStep(currentStep: Step): Step {
     const nextStep = this.steps.find(e => e.index === currentStep.index + 1) as Step;
     if (!nextStep) {
@@ -40,6 +54,11 @@ export class StepUtil {
     return nextStep;
   }
 
+  /**
+   * get Back Step
+   * @param currentStep : Current step
+   * @returns Step : back of current step
+   */
   static getBackStep(currentStep: Step): Step {
     const backStep = this.steps.find(e => e.index === currentStep.index - 1) as Step;
     if (!backStep) {

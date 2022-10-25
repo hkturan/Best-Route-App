@@ -10,14 +10,18 @@ import {Route} from '../entities/route';
 import {RoutePlan} from '../entities/route-plan';
 import {MapService} from '../services/map.service';
 import {MessageUtil} from './message-util';
-import {EnumMessageSeverity} from '../enums/enum-message-severity';
 import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 import {services} from '@tomtom-international/web-sdk-services';
+import {LineOptions} from '../entities/line-options';
 
 export class MapUtil {
 
   static mapService: MapService;
 
+  /**
+   * set Map Service to util
+   * @param mapService : Map Service
+   */
   static setMapService(mapService: MapService): void {
     this.mapService = mapService;
   }
@@ -87,6 +91,7 @@ export class MapUtil {
     marker.getElement().id = id;
     marker.getElement().addEventListener('click', () => {
       // console.log(marker.getElement().id);
+      // TODO
     });
     marker.addTo(map);
 
@@ -114,6 +119,9 @@ export class MapUtil {
       for (let i = 0; i < (res as any).routes[0].legs[0].points.length - 1; i++) {
         const points = (res as any).routes[0].legs[0].points;
         const line = new Line();
+        const lineOptions = new LineOptions();
+        lineOptions.lineColor = EnumMarker.BLUE_DIRECTION_MARKER.color;
+        line.lineOptions = lineOptions;
         line.id = HelperUtil.getLineNextIdFromHtml();
         const data1 = points[i];
         const data2 = points[i + 1];
@@ -256,6 +264,11 @@ export class MapUtil {
     }, 1);
   }
 
+  /**
+   * Change visibility of marker
+   * @param markerId : Marker id
+   * @param visibility : visibility value
+   */
   static changeVisibilityOfMarker(markerId: string, visibility: boolean): void {
     const element = document.getElementById(markerId) as HTMLElement;
     if (element) {
@@ -263,6 +276,10 @@ export class MapUtil {
     }
   }
 
+  /**
+   * Rotate all line-markers
+   * @param list : Route List
+   */
   static rotateAllLineMarkers(list: Route[]): void {
     for (const route of list) {
       for (const line of route.listLine) {
@@ -271,6 +288,10 @@ export class MapUtil {
     }
   }
 
+  /**
+   * Get line layer for draw line
+   * @param line : Line Info
+   */
   static getLineLayer(line: Line): any {
     return {
       id: line.id,
@@ -305,6 +326,11 @@ export class MapUtil {
     };
   }
 
+  /**
+   * Get total distance of route plan
+   * @param routePlan : Route Plan
+   * @returns number : total distance in Kilometer
+   */
   static getTotalDistanceOfRoutePlan(routePlan: RoutePlan): number {
     let totalDistance = 0;
     for (const route of routePlan.listRoute) {
@@ -313,17 +339,23 @@ export class MapUtil {
     return totalDistance;
   }
 
-  static async getWaypointOptimizatedOrder(pointsForWaypointOptimizations: any, endPointIndex: number): Promise<any[]> {
+  /**
+   * Get waypoint optimized order using tomtom api
+   * @param pointsForWaypointOptimizations : Points for waypoint optimization
+   * @param endPointIndex : End Point Index
+   * @returns number[] : waypoint optimized order list
+   */
+  static async getWaypointOptimizatedOrder(pointsForWaypointOptimization: any, endPointIndex: number): Promise<any[]> {
     let optimizedOrder: any[] = [];
     const requestBody = {
-      waypoints: pointsForWaypointOptimizations,
+      waypoints: pointsForWaypointOptimization,
       options: {
         travelMode: 'car',
         vehicleMaxSpeed: 110,
-        outputExtensions: ['travelTimes', 'routeLengths'],
+        outputExtensions: ['travelTimes', 'routeLengths'], // Output Infos
         waypointConstraints : {
-          originIndex: 0,
-          destinationIndex: endPointIndex
+          originIndex: 0, // Start Point Index
+          destinationIndex: endPointIndex // End Point Index (Optional)
         }
       }
     };
@@ -335,6 +367,10 @@ export class MapUtil {
     return optimizedOrder;
   }
 
+  /**
+   * add Search Box to map to search for location
+   * @param map : map
+   */
   static addSearchBox(map: any): void {
     let searchMarker: MarkerEntity | undefined;
     const options = {
@@ -343,7 +379,7 @@ export class MapUtil {
       searchOptions: {
         key: Constants.TOMTOM_API_KEY,
         language: Constants.LANGUAGE,
-        limit: 5
+        limit: Constants.SEARCH_BOX_RESULT_LIMIT
       },
       autocompleteOptions: {
         key: Constants.TOMTOM_API_KEY,
@@ -354,6 +390,7 @@ export class MapUtil {
     const ttSearchBox = new SearchBox(services, options);
     map.addControl(ttSearchBox, 'top-left');
 
+    // Select Result Event (Add Result)
     ttSearchBox.on('tomtom.searchbox.resultselected', (data) => {
       if (searchMarker) {
         MapUtil.removeMarker(searchMarker.id);
@@ -364,6 +401,7 @@ export class MapUtil {
       MapUtil.goAnywhereOnMapWithMarker(map, searchMarker);
     });
 
+    // Clear Result Event (Remove Result)
     ttSearchBox.on('tomtom.searchbox.resultscleared', () => {
       if (!searchMarker) {
         return;

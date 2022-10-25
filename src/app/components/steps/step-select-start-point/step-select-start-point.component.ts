@@ -27,7 +27,7 @@ export class StepSelectStartPointComponent implements OnInit {
   }
 
   /**
-   * Goes to the start point on the map
+   * Go to the start point on the map
    */
   goStartPoint(): void {
     if (!this.startMarkerEntity) {
@@ -37,7 +37,7 @@ export class StepSelectStartPointComponent implements OnInit {
   }
 
   /**
-   * Deletes the start point and marker from the map
+   * Delete the start point and marker from the map
    */
   deleteStartPoint(): void {
     if (!this.startMarkerEntity) {
@@ -49,7 +49,7 @@ export class StepSelectStartPointComponent implements OnInit {
   }
 
   /**
-   * Gets your live location in real time
+   * Get your live location in real time
    */
   getLiveLocation(): void {
     navigator.geolocation.watchPosition(

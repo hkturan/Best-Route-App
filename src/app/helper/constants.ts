@@ -2,6 +2,7 @@ export class Constants {
   static readonly IMAGE_PATH = '../assets/images/';
   static readonly TOMTOM_API_KEY = 'mY2AGRrlB4dqmKzjUkSJdApNnarr3Mi7';
   static readonly LANGUAGE = 'en-GB';
+  static readonly SEARCH_BOX_RESULT_LIMIT = 5;
   static readonly MARKER_ID = 'markerId';
   static readonly MARKER_NAME = 'Marker';
   static readonly MARKER_LIMIT = 10;

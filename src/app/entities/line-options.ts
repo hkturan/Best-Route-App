@@ -5,7 +5,6 @@ export interface LineOptions {
 
 export class LineOptions {
   constructor() {
-    this.lineColor = '#0090ff';
     this.lineWidth = 5;
   }
 }
