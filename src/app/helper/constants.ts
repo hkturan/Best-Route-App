@@ -13,5 +13,6 @@ export class Constants {
   static readonly DEFAULT_LATITUDE = 36.798643413707424;
   static readonly IS_SHOW_ROUTE_DIRECTIONS = false;
   static readonly MAP_ZOOM = 14;
+  static readonly POPUP = 'popup';
 
 }

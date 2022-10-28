@@ -90,7 +90,7 @@ export class MapUtil {
    */
   static drawMarker(map: any, data: LngLat, enumMarker: EnumMarker, markerId?: string): MarkerEntity {
     const markerElement = document.createElement('div');
-    markerElement.className = 'marker';
+    markerElement.className = 'marker popup';
     markerElement.style.backgroundImage = HelperUtil.getImageFromAssets(enumMarker.imgName);
     markerElement.style.height = enumMarker.height;
     markerElement.style.width = enumMarker.width;
@@ -99,11 +99,21 @@ export class MapUtil {
     }
     const id = markerId ? markerId : Constants.MARKER_ID + this.counterService.getCounterValue(EnumCounterType.MARKER);
     const name = Constants.MARKER_NAME + ' ' + id.replace(Constants.MARKER_ID, '');
+
+    const spanElement = document.createElement('span');
+    spanElement.className = 'popuptext';
+    spanElement.innerHTML = name;
+    spanElement.id = Constants.POPUP + id;
+    markerElement.appendChild(spanElement);
+
     const marker = new tt.Marker({element: markerElement, anchor: 'center', draggable: true}).setLngLat([data.lng, data.lat]);
     marker.getElement().id = id;
     marker.getElement().addEventListener('click', () => {
-      // console.log(marker.getElement().id);
-      // TODO
+      const popup = document.getElementById(Constants.POPUP + id);
+      if (!popup) {
+        return;
+      }
+      popup.classList.toggle('show');
     });
     marker.addTo(map);
 

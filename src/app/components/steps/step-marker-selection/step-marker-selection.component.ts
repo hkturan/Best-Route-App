@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MapUtil} from '../../../utils/map-util';
 import {MarkerEntity} from '../../../entities/marker.entity';
+import {Constants} from '../../../helper/constants';
 
 @Component({
   selector: 'app-step-marker-selection',
@@ -30,7 +31,6 @@ export class StepMarkerSelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   /**
    * Deletes the selected marker from the table
    */
@@ -58,6 +58,18 @@ export class StepMarkerSelectionComponent implements OnInit {
       return;
     }
     this.listMarkerEntity.splice(this.listMarkerEntity.indexOf(marker), 1);
+  }
+
+  /**
+   * Change popup of marker
+   * @param markerEntity : marker to change name
+   */
+  onChangeMarkerName(markerEntity: MarkerEntity): void {
+    const popup = document.getElementById(Constants.POPUP + markerEntity.id) as HTMLElement;
+    if (!popup) {
+      return;
+    }
+    popup.innerHTML = markerEntity.name;
   }
 
 }
