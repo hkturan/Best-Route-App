@@ -134,6 +134,7 @@ The project was developed with angular 11 and aims to calculate the best route b
 ---
 
 <h4>Marker Info</h4>
+
 ![imageedit_14_3892418615](https://user-images.githubusercontent.com/25109457/198832698-b5c1fbfe-8f1b-4b28-80e7-f0fd2aa4d998.png)
 
 **[⬆ back to top](#readme-top)**
