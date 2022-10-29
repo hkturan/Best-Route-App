@@ -26,7 +26,8 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Installation</a>
+        </li>
       </ul>
     </li>
     <li><a href="#license">License</a></li>
@@ -45,13 +46,14 @@ https://user-images.githubusercontent.com/25109457/193160303-e8c026e9-ef72-4466-
 
 The project was developed with angular 11 and aims to calculate the best route by optimizing the selected destination points. Project's abilities:
 
-* Placing markers on the map
-* Moving markers with drag and drop
-* Naming the markers
+* Place markers on the map
+* Move markers with drag and drop
+* Name the markers
+* Get live location
 * Search by coordinate or place name
-* Determining the start - end point of the route
+* Determine the start - end point of the route
 * Set up to 10 intermediate destinations
-* Editing the route after the best route has been calculated (changing order)
+* Edit the route after the best route has been calculated (changing order)
 * Show route between 2 destinations with custom color
 * Show route direction
 
@@ -69,18 +71,60 @@ The project was developed with angular 11 and aims to calculate the best route b
 
 ### Installation
 
-1. Clone the repo
+1. <h4>Clone the repo</h4>
+
    ```sh
-   git clone https://github.com/hkturan/Form-Creator.git
+   git clone https://github.com/hkturan/Best-Route-App.git
    ```
-2. Install Npm Packages (in Terminal)
+2. <h4>Install Npm Packages (in Terminal)</h4>
+
    ```sh
    npm install
    ```
-3. Start and Create Form (in Terminal)
+3. <h4>Start Application (in Terminal)</h4>
+
    ```sh
    npm start
    ```
+   ---
+4. <h4>Select Start Point (Step 1 of Create Route)</h4>
+   
+   ![imageedit_2_8732827428](https://user-images.githubusercontent.com/25109457/198829861-30a9b541-89ba-4edb-80d0-125e63218be7.png)
+   ---
+   * <p>After the start point is selected</p>
+   ![imageedit_2_7598192016](https://user-images.githubusercontent.com/25109457/198830051-af4462fe-20cf-4ff8-adda-d4c71b3131fb.png)
+   
+   ---
+5. <h4>Select Destination Point(s) (Step 2 of Create Route)</h4>
+
+   ![imageedit_2_4062864280](https://user-images.githubusercontent.com/25109457/198830629-ffa47fa4-3c16-4064-bf78-770b614d4e1c.png)
+   ---
+   * <p>After the destination points are selected</p>
+   ![imageedit_7_6017005823](https://user-images.githubusercontent.com/25109457/198831979-e5efceab-187e-4406-9b40-ec2d6a944a6a.png)
+   
+   ---
+6. <h4>Select End Point (Optional) (Step 3 of Create Route)</h4>
+
+   ![imageedit_4_5117932459](https://user-images.githubusercontent.com/25109457/198831656-45d12e91-4480-49a2-8fcb-ea06f0e195e2.png)
+   ---
+   * <p>After the end point is selected</p>
+   ![imageedit_5_2413072479](https://user-images.githubusercontent.com/25109457/198831659-e942f4d4-53e2-4766-8278-8e105e118fd1.png)
+   
+7. <h4>Preview Route Plan (Step 4 of Create Route)</h4>
+
+   ![imageedit_8_2396896143](https://user-images.githubusercontent.com/25109457/198832035-b93d4f61-2289-42d5-b9df-12335bbb4f03.png)
+   
+   You can reorder the route plan
+   
+   ---
+8. <h4> Preview Route Plan (Step 4 of Create Route)</h4>
+
+   ![imageedit_8_2396896143](https://user-images.githubusercontent.com/25109457/198832035-b93d4f61-2289-42d5-b9df-12335bbb4f03.png)
+   ---
+   You can reorder the route plan
+   
+
+
 
 **[⬆ back to top](#readme-top)**
 
