@@ -1,7 +1,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
+  <img src="https://user-images.githubusercontent.com/25109457/198842805-9502e712-ae9f-41aa-ab40-b213a443ceda.png" alt="Logo" width="128" height="128">
 
+  
 <h3 align="center">Best Route Application using <a href="https://www.tomtom.com/products/maps-navigation-apis-sdks/">TomTom API</a></h3>
 
   <p align="center">
