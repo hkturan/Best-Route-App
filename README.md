@@ -2,7 +2,7 @@
 <br />
 <div align="center">
 
-<h3 align="center">Best Route Application</h3>
+<h3 align="center">Best Route Application using <a href="https://www.tomtom.com/products/maps-navigation-apis-sdks/">TomTom API</a></h3>
 
   <p align="center">
     Choose your destination points from the map and find the best route
@@ -44,7 +44,7 @@ https://user-images.githubusercontent.com/25109457/193160303-e8c026e9-ef72-4466-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project was developed with angular 11 and aims to calculate the best route by optimizing the selected destination points. Project's abilities:
+The project was developed with angular 11 and aims to calculate the best route by optimizing the selected destination points.<a href="https://www.tomtom.com/products/maps-navigation-apis-sdks/">TomTom API</a> used for development. Project's abilities:
 
 * Place markers on the map
 * Move markers with drag and drop
@@ -56,6 +56,13 @@ The project was developed with angular 11 and aims to calculate the best route b
 * Edit the route after the best route has been calculated (changing order)
 * Show route between 2 destinations with custom color
 * Show route direction
+
+---
+<h4>Methods used<h4>
+  
+* <a href="https://developer.tomtom.com/routing-api/documentation/routing/calculate-route">Calculate Route</a> : Calculates a route between an origin and a destination
+* <a href="https://developer.tomtom.com/routing-api/documentation/waypoint-optimization/waypoint-optimization">Waypoint Optimization</a> : Optimizes a provided waypoints sequence based on road network distances
+  
 
 **[⬆ back to top](#readme-top)**
 
