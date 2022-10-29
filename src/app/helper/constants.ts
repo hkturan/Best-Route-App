@@ -1,6 +1,6 @@
 export class Constants {
   static readonly IMAGE_PATH = '../assets/images/';
-  static readonly TOMTOM_API_KEY = 'mY2AGRrlB4dqmKzjUkSJdApNnarr3Mi7';
+  static readonly TOMTOM_API_KEY = '--YOUR_TOMTOM_API_KEY_HERE--';
   static readonly LANGUAGE = 'en-GB';
   static readonly SEARCH_BOX_RESULT_LIMIT = 5;
   static readonly MARKER_ID = 'markerId';
