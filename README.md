@@ -81,6 +81,13 @@ The project was developed with angular 11 and aims to calculate the best route b
    ```sh
    npm install
    ```
+3. Set Your Tomtom Api Key in `src/app/helper/constants.ts`
+
+   ```sh
+   static readonly TOMTOM_API_KEY = '--YOUR_TOMTOM_API_KEY_HERE--';
+   ```
+   
+
 3. <h4>Start Application (in Terminal)</h4>
 
    ```sh
