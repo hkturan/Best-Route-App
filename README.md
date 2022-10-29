@@ -15,7 +15,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#video-part-1">Video Part-1</a></li>
+    <li><a href="#introduction-video">Introduction Video</a></li>
     <li><a href="#video-part-2">Video Part-2</a></li>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -35,11 +35,9 @@
   </ol>
 </details>
 
-## Video Part-1
-https://user-images.githubusercontent.com/25109457/193160297-b4ae4c9e-be3f-4dde-ae86-4b2b93cad5aa.mp4
 
-## Video Part-2
-https://user-images.githubusercontent.com/25109457/193160303-e8c026e9-ef72-4466-8693-eabfafb9620d.mp4
+## Introduction Video
+[![Little red riding hood](![Ekran Alıntısı](https://user-images.githubusercontent.com/25109457/198838871-b0a60580-2ded-499e-a258-6a13f8bb242a.PNG))](https://vimeo.com/765251253 "Little red riding hood - Click to Watch!")
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
