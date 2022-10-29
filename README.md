@@ -117,14 +117,24 @@ The project was developed with angular 11 and aims to calculate the best route b
    You can reorder the route plan
    
    ---
-8. <h4> Preview Route Plan (Step 4 of Create Route)</h4>
+8. <h4> Best Route Plan is Ready!</h4>
 
-   ![imageedit_8_2396896143](https://user-images.githubusercontent.com/25109457/198832035-b93d4f61-2289-42d5-b9df-12335bbb4f03.png)
+   ![imageedit_9_2761687500](https://user-images.githubusercontent.com/25109457/198832267-1385f045-d57a-4811-a5d7-30320d867944.png)
    ---
-   You can reorder the route plan
-   
+   ![imageedit_10_5918341081](https://user-images.githubusercontent.com/25109457/198832268-c43982bc-16a5-4d5f-bb76-5b7615bccf62.png)
+   ---
 
+<h4>You can search by coordinate or place name</h4>
 
+* <p>by Place Name</p>
+![imageedit_12_3140777766](https://user-images.githubusercontent.com/25109457/198832548-6bb80c7b-10da-4ec0-87af-9a533ea41ab1.png)
+---
+* <p>by Coordinate</p>
+![imageedit_13_6922188680](https://user-images.githubusercontent.com/25109457/198832550-83d3796c-5cc8-4330-8b94-2c0c55d15c20.png)
+---
+
+<h4>Marker Info</h4>
+![imageedit_14_3892418615](https://user-images.githubusercontent.com/25109457/198832698-b5c1fbfe-8f1b-4b28-80e7-f0fd2aa4d998.png)
 
 **[⬆ back to top](#readme-top)**
 
