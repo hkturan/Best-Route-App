@@ -37,7 +37,9 @@
 
 
 ## Introduction Video
-[![Little red riding hood](![Ekran Alıntısı](https://user-images.githubusercontent.com/25109457/198838871-b0a60580-2ded-499e-a258-6a13f8bb242a.PNG))](https://vimeo.com/765251253 "Little red riding hood - Click to Watch!")
+
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/765251253?h=47c27a159e" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
