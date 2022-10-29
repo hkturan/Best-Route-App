@@ -36,10 +36,9 @@
 </details>
 
 
-## Introduction Video
+## Introduction Video (Click to Play)
 
-<iframe title="vimeo-player" src="https://player.vimeo.com/video/765251253?h=47c27a159e" width="640" height="360" frameborder="0" allowfullscreen></iframe>
-
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/25109457/198842519-9fa44ddf-7fa2-47a5-a7b2-b28937d472e9.png)](https://vimeo.com/765251253)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
