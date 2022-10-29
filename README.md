@@ -17,7 +17,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#introduction-video">Introduction Video</a></li>
+    <li><a href="#introduction-video-click-to-play">Introduction Video</a></li>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
