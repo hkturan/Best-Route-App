@@ -7,7 +7,7 @@
 <!-- [START] End Marker Object -->
 <ng-container *ngIf="endMarkerEntity">
   <div class="text-align-center">
-    <input class="p-inputtext p-component text-align-center p-mt-3" pInputText type="text" [(ngModel)]="endMarkerEntity.name">
+    <input (change)="mapUtil.onChangeMarkerName(endMarkerEntity)" class="p-inputtext p-component text-align-center p-mt-3" pInputText type="text" [(ngModel)]="endMarkerEntity.name">
   </div>
   <div class="p-col p-p-0 p-mt-1 end-marker">
     <div class="display-flex">

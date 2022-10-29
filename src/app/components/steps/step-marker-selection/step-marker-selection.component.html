@@ -38,7 +38,7 @@
         <td pEditableColumn>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input (change)="onChangeMarkerName(markerEntity)" class="p-inputtext p-component" pInputText type="text" [(ngModel)]="markerEntity.name">
+              <input (change)="mapUtil.onChangeMarkerName(markerEntity)" class="p-inputtext p-component" pInputText type="text" [(ngModel)]="markerEntity.name">
             </ng-template>
             <ng-template pTemplate="output">
               {{markerEntity.name}}

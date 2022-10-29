@@ -11,6 +11,9 @@ import {EnumMarker} from '../../../enums/enum-marker';
 })
 export class StepSelectStartPointComponent implements OnInit {
 
+  // Utils
+  mapUtil = MapUtil;
+
   // Map
   @Input() map: any;
 

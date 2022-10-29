@@ -438,4 +438,16 @@ export class MapUtil {
     });
   }
 
+  /**
+   * Change popup of marker
+   * @param markerEntity : marker to change name
+   */
+  static onChangeMarkerName(markerEntity: MarkerEntity): void {
+    const popup = document.getElementById(Constants.POPUP + markerEntity.id) as HTMLElement;
+    if (!popup) {
+      return;
+    }
+    popup.innerHTML = markerEntity.name;
+  }
+
 }

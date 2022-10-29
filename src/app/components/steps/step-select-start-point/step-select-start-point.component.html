@@ -7,7 +7,7 @@
 <!-- [START] Start Marker Object -->
 <ng-container *ngIf="startMarkerEntity">
   <div class="text-align-center">
-    <input class="p-inputtext p-component text-align-center p-mt-3" pInputText type="text" [(ngModel)]="startMarkerEntity.name">
+    <input (change)="mapUtil.onChangeMarkerName(startMarkerEntity)" class="p-inputtext p-component text-align-center p-mt-3" pInputText type="text" [(ngModel)]="startMarkerEntity.name">
   </div>
   <div class="p-col p-p-0 p-mt-1 start-marker">
     <div class="display-flex">

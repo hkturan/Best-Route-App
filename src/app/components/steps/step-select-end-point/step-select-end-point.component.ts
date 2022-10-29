@@ -11,6 +11,9 @@ import {MarkerEntity} from '../../../entities/marker.entity';
 })
 export class StepSelectEndPointComponent implements OnInit {
 
+  // Utils
+  mapUtil = MapUtil;
+
   // Map
   @Input() map: any;
 
