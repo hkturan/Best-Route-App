@@ -39,7 +39,7 @@
 
 ## Introduction Video (Click to Play)
 
-[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/25109457/198842519-9fa44ddf-7fa2-47a5-a7b2-b28937d472e9.png)](https://vimeo.com/765251253){:target="_blank"}
+[![](https://user-images.githubusercontent.com/25109457/198842519-9fa44ddf-7fa2-47a5-a7b2-b28937d472e9.png)](https://vimeo.com/765251253)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
