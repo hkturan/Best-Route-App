@@ -57,6 +57,7 @@ export class StepSelectStartPointComponent implements OnInit {
         this.deleteStartPoint();
         const lngLat = new LngLat(position.coords.longitude, position.coords.latitude);
         this.startMarkerEntity = MapUtil.drawMarker(this.map, lngLat, EnumMarker.GREEN_MARKER);
+        MapUtil.goAnywhereOnMapWithMarker(this.map, this.startMarkerEntity, false);
         this.refreshStartMarker.emit(this.startMarkerEntity);
       },
       (err: GeolocationPositionError) => {

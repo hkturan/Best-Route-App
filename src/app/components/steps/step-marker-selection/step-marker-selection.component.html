@@ -1,5 +1,5 @@
 <div class="p-col p-pr-0 p-pl-0">
-  <p-table [scrollable]="true" scrollHeight="205px" [value]="listMarkerEntity"
+  <p-table [scrollable]="true" scrollHeight="287px" [value]="listMarkerEntity"
            selectionMode="single" [(selection)]="selectedMarkerEntities" dataKey="id" styleClass="p-datatable-gridlines"
            responsiveLayout="scroll" >
     <!-- [START] Caption of Table -->
@@ -54,7 +54,7 @@
 
     <!-- [START] Summary of Table -->
     <ng-template pTemplate="summary">
-      Total Markers : {{listMarkerEntity.length}}
+      Total Markers : {{listMarkerEntity.length}} / Marker Limit : {{constants.MARKER_LIMIT}}
     </ng-template>
     <!-- [END] Summary of Table -->
   </p-table>

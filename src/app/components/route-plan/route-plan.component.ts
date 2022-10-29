@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RoutePlan} from '../../entities/route-plan';
 import {MapUtil} from '../../utils/map-util';
 import {CounterService} from '../../services/counter.service';
 import {EnumCounterType} from '../../enums/enum-counter-type';
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-route-plan',
@@ -18,10 +19,14 @@ export class RoutePlanComponent implements OnInit {
   @Input() routePlan: RoutePlan = new RoutePlan();
   @Input() routePlanTemp: RoutePlan = new RoutePlan();
 
+  // For New Route
+  @Output() newRouteEvent = new EventEmitter<any>();
+
   // Visibility of Route's Direction Markers
   visibilityDirections = false;
 
-  constructor(private counterService: CounterService) {
+  constructor(private counterService: CounterService,
+              private confirmationService: ConfirmationService) {
   }
 
   ngOnInit(): void {
@@ -66,6 +71,9 @@ export class RoutePlanComponent implements OnInit {
     }
   }
 
+  /**
+   * Back to Preview Route Plan step
+   */
   backPreview(): void {
     this.counterService.setCounterValue(EnumCounterType.ROUTE, 0);
     const list = [this.routePlanTemp.listRoute, this.routePlan.listRoute];
@@ -77,6 +85,21 @@ export class RoutePlanComponent implements OnInit {
       }
     }
     this.routePlan.listRoute = [];
+  }
+
+  /**
+   * Create a new route
+   */
+  newRoute(): void {
+    this.confirmationService.confirm({
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      message: 'Current route will be deleted. Do you want to create new route?',
+      key: 'confirmDialogKeyNewRoute',
+      accept: () => {
+        this.newRouteEvent.emit('');
+      }
+    });
   }
 
 }

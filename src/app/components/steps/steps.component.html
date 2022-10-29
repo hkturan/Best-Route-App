@@ -57,7 +57,7 @@
 </div>
 <ng-template #blockPlan>
   <!-- [START] Route Plan -->
-  <app-route-plan [map]="map" [routePlan]="routePlan" [routePlanTemp]="routePlanTemp"></app-route-plan>
+  <app-route-plan (newRouteEvent)="newRoute()" [map]="map" [routePlan]="routePlan" [routePlanTemp]="routePlanTemp"></app-route-plan>
   <!-- [END] Route Plan -->
 </ng-template>
 

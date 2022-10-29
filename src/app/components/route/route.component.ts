@@ -15,8 +15,13 @@ import {Constants} from '../../helper/constants';
 })
 export class RouteComponent implements OnInit {
 
+  // Map
   @Input() map: any;
+
+  // Route
   @Input() route: Route | undefined;
+
+  // Route Plan
   @Input() routePlanTemp: RoutePlan | undefined;
 
   constructor(private counterService: CounterService) {
@@ -25,6 +30,10 @@ export class RouteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Click Event of Route
+   * @param route : route to click
+   */
   onClickRoute(route: Route): void {
     if (!this.map || !route || !this.routePlanTemp || !this.routePlanTemp.listRoute) {
       return;

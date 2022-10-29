@@ -34,3 +34,8 @@
 .button-div {
   width: 40px;
 }
+
+:host ::ng-deep .p-inputtext {
+  height: 28px;
+  font-size: 13px;
+}

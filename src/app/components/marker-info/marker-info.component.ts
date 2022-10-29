@@ -8,6 +8,7 @@ import {EnumMarker} from '../../enums/enum-marker';
 })
 export class MarkerInfoComponent implements OnInit {
 
+  // Enum Marker List
   markerList: EnumMarker[] = [];
 
   constructor() {

@@ -13,6 +13,9 @@ export class StepMarkerSelectionComponent implements OnInit {
   // Utils
   mapUtil = MapUtil;
 
+  // Constants
+  constants = Constants;
+
   // Map
   @Input() map: any;
 

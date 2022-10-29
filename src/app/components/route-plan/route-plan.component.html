@@ -24,6 +24,11 @@
 <!-- [START] Buttons -->
 <div class="text-align-center p-mt-3">
   <button (click)="backPreview()" pButton label="Back" icon="pi pi-angle-left" class="p-button-sm"></button>
-  <button pButton label="New Route" icon="pi pi-plus" class="p-button-sm p-button-info p-ml-2"></button>
+  <button (click)="newRoute()" pButton label="New Route" icon="pi pi-plus" class="p-button-sm p-button-info p-ml-2"></button>
 </div>
 <!-- [END] Buttons -->
+
+<!-- [START] Confirm Dialog - New Route -->
+<p-confirmDialog rejectButtonStyleClass="p-button-outlined" key="confirmDialogKeyNewRoute" [style]="{width: '30vw'}">
+</p-confirmDialog>
+<!-- [END] Confirm Dialog - New Route -->

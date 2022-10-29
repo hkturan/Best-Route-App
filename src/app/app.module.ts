@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,7 +20,7 @@ import {StepSelectStartPointComponent} from './components/steps/step-select-star
 import {ProgressBarModule} from 'primeng/progressbar';
 import {OrderListModule} from 'primeng/orderlist';
 import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RoutePlanComponent} from './components/route-plan/route-plan.component';
 import {MapService} from './services/map.service';
@@ -30,6 +29,7 @@ import {StepPreviewRoutePlanComponent} from './components/steps/step-preview-rou
 import {StepSelectEndPointComponent} from './components/steps/step-select-end-point/step-select-end-point.component';
 import {MarkerInfoComponent} from './components/marker-info/marker-info.component';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -63,9 +63,10 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     MessagesModule,
     MessageModule,
     BrowserAnimationsModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ConfirmDialogModule
   ],
-  providers: [CounterService, MessageService, MapService],
+  providers: [CounterService, MessageService, MapService, ConfirmationService],
   bootstrap: [AppComponent],
   entryComponents: [],
 })

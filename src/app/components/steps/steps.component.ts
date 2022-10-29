@@ -55,7 +55,6 @@ export class StepsComponent implements OnInit {
 
   ngOnInit(): void {
     this.addMapEvents();
-    // throw Error('deneme');
   }
 
   /**
@@ -183,6 +182,20 @@ export class StepsComponent implements OnInit {
    */
   refreshMarkerList(listMarkerEntity: MarkerEntity[]): void {
     this.listMarkerEntity = listMarkerEntity;
+  }
+
+  /**
+   * Create a new route
+   */
+  newRoute(): void {
+    this.currentStep = StepUtil.getStepWithIndex(0);
+    this.startMarkerEntity = undefined;
+    this.endMarkerEntity = undefined;
+    this.listMarkerEntity = [];
+    this.routePlan = new RoutePlan();
+    this.routePlanTemp = new RoutePlan();
+    this.orderedMarkerList = [];
+    this.map = MapUtil.createMap(this.map);
   }
 
 }
