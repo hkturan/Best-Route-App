@@ -196,6 +196,7 @@ export class StepsComponent implements OnInit {
     this.routePlanTemp = new RoutePlan();
     this.orderedMarkerList = [];
     this.map = MapUtil.createMap(this.map);
+    this.addMapEvents();
   }
 
 }

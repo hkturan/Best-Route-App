@@ -81,8 +81,8 @@ export class MapUtil {
   }
 
   /**
-   * Draw Line on Map
-   * @param map : map to draw lines
+   * Draw Marker on Map
+   * @param map : map to draw markers
    * @param data : coordinate to draw marker
    * @param enumMarker : Marker type
    * @param markerId : Marker id (Optional)
